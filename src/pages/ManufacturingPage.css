@@ -1,0 +1,322 @@
+.manufacturing-page {
+  padding-top: 0;
+}
+
+/* Manufacturing Hero Banner */
+.manufacturing-hero {
+  width: 100%;
+  height: 350px;
+  background-image: url('https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.manufacturing-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.manufacturing-title {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 900;
+  color: #10271D;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.manufacturing-title .title-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-color: #E31E24;
+}
+
+/* Main Content Section */
+.manufacturing-main-section {
+  padding: 200px 0;
+  background-color: var(--bg-light);
+}
+
+.manufacturing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 140px;
+  align-items: center;
+}
+
+.image-wrapper {
+  border-radius: 20px;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 650px;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
+
+.image-overlay-card {
+  position: absolute;
+  bottom: 30px;
+  right: -20px;
+  background: #2B4C3F;
+  color: white;
+  padding: 25px 35px;
+  border-radius: 12px;
+  max-width: 450px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.image-overlay-card h3 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.section-tag {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: #10271D;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.section-title {
+  font-size: 72px;
+  font-weight: 900;
+  color: #10271D;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.section-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.section-desc p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #10271D;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.quality-points {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.point-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.point-icon {
+  color: #E31E24;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.point-item p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #10271D;
+}
+
+.advanced-setup {
+  padding: 40px 0;
+}
+
+.key-highlights {
+  padding: 40px 0;
+  margin-top: -100px;
+}
+
+.reverse-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Ensure content is on left, image on right for reverse */
+.reverse-grid .manufacturing-content-col {
+  order: 1;
+}
+.reverse-grid .manufacturing-image-col {
+  order: 2;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.highlights-list li {
+  font-size: 18px;
+  font-weight: 600;
+  color: #10271D;
+  opacity: 0.8;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .reverse-grid .manufacturing-content-col,
+  .reverse-grid .manufacturing-image-col {
+    order: unset;
+  }
+}
+
+@media (max-width: 1024px) {
+  .manufacturing-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .section-title {
+    font-size: 48px;
+  }
+}
+
+/* Make In India Section */
+.make-in-india-section {
+  padding: 100px 0 200px 0;
+  background-color: var(--bg-light);
+}
+
+.mii-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.mii-images-col {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.mii-image-card {
+  flex: 1;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.mii-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flag-card {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.flag-card img {
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  .mii-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  .mii-images-col {
+    justify-content: center;
+  }
+}
+
+.factory-video-section {
+  padding: 100px 0;
+  background-color: var(--bg-light);
+}
+
+.video-container {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  border-radius: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.video-container:hover img {
+  transform: scale(1.05);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.play-circle {
+  width: 120px;
+  height: 120px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.play-circle span {
+  color: white;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.video-container:hover .play-circle {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    height: 350px;
+  }
+  .play-circle {
+    width: 80px;
+    height: 80px;
+  }
+}

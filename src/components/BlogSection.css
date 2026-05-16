@@ -1,0 +1,130 @@
+.blog-section {
+  padding: 100px 0;
+  background-color: var(--bg-light);
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.blog-subtitle {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--brand-green);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.blog-title {
+  font-family: var(--font-main);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--brand-green);
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.blog-card {
+  background-color: var(--white);
+  padding: 45px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  transition: var(--transition);
+  cursor: pointer;
+  height: 100%;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #101d18;
+}
+
+.blog-category {
+  letter-spacing: 1px;
+}
+
+.blog-dot {
+  opacity: 0.5;
+}
+
+.blog-date {
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.blog-card-title {
+  font-family: var(--font-main);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--brand-green);
+  line-height: 1.2;
+}
+
+.blog-card-excerpt {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.blog-card-arrow {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-green);
+  margin-top: auto;
+  transition: var(--transition);
+}
+
+.blog-card:hover .blog-card-arrow {
+  background-color: var(--brand-green);
+  border-color: var(--brand-green);
+  color: var(--white);
+}
+
+@media (max-width: 1200px) {
+  .blog-title {
+    font-size: 56px;
+  }
+  .blog-card-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  .blog-title {
+    font-size: 42px;
+  }
+}

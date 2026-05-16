@@ -1,0 +1,684 @@
+.services-page {
+  width: 100%;
+}
+
+/* Hero Section */
+.services-hero {
+  height: 450px;
+  background-image: url('https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.services-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.services-title {
+  font-family: var(--font-main);
+  font-size: 82px;
+  font-weight: 900;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.services-title .title-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  height: 4px;
+  background-color: var(--brand-red);
+}
+
+/* Services Grid */
+.services-grid-section {
+  padding: 150px 0 60px 0;
+  background-color: var(--bg-light);
+}
+
+.services-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.service-card {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.service-icon {
+  width: 100px;
+  height: 100px;
+  color: #8BC34A;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: translateY(-10px);
+}
+
+.service-card-title {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 800;
+  color: #10271D;
+}
+
+.service-card-desc {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 320px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.service-card-arrow {
+  margin-top: auto;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  transition: all 0.4s ease;
+}
+
+.read-more-text {
+  font-family: var(--font-main);
+  font-size: 16px;
+  font-weight: 700;
+  color: #10271D;
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .service-card-arrow {
+  gap: 12px;
+}
+
+.service-card:hover .read-more-text {
+  opacity: 1;
+  width: 90px;
+}
+
+/* FAQ Section */
+.services-faq-section {
+  padding: 60px 0 60px 0;
+  background-color: var(--bg-light);
+}
+
+.faq-flex {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.faq-image-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.faq-main-img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.faq-floating-card {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  background-color: #2D4A3E;
+  padding: 40px;
+  border-radius: 15px;
+  width: 280px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.faq-floating-card h3 {
+  color: var(--white);
+  font-family: var(--font-main);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.faq-content {
+  flex: 1;
+}
+
+.faq-label {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #10271D;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.faq-heading {
+  font-family: var(--font-main);
+  font-size: 56px;
+  font-weight: 900;
+  color: #10271D;
+  line-height: 1.1;
+  margin-bottom: 50px;
+}
+
+/* Accordion Styling */
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(16, 39, 29, 0.1);
+  padding: 25px 0;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 800;
+  color: #10271D;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.accordion-body {
+  margin-top: 20px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Clients Section */
+.services-clients-section {
+  padding: 100px 0 80px 0;
+  background-color: var(--bg-light);
+}
+
+.clients-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+}
+
+.clients-logos {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.client-logo {
+  height: 85px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.2);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.client-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+.clients-text {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.clients-heading {
+  font-family: var(--font-main);
+  font-size: 42px;
+  font-weight: 800;
+  color: #10271D;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Bottom Banner */
+.services-bottom-banner {
+  height: 100vh;
+  background-image: url('https://savexelectricals.com/wp-content/uploads/2022/11/service-page-background.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-label {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.banner-heading {
+  font-family: var(--font-main);
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+
+.banner-btn {
+  background-color: #E31E24;
+  color: var(--white);
+  padding: 20px 45px;
+  border-radius: 50px;
+  font-family: var(--font-main);
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.banner-btn:hover {
+  background-color: #C1181D;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(227, 30, 36, 0.3);
+}
+
+/* Modern Technologies Section */
+.modern-tech-section {
+  padding: 150px 0;
+  background-color: var(--bg-light);
+}
+
+.tech-flex {
+  display: flex;
+  gap: 100px;
+}
+
+.tech-left {
+  flex: 1.2;
+}
+
+.tech-label {
+  display: block;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #10271D;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.tech-heading {
+  font-family: var(--font-main);
+  font-size: 64px;
+  font-weight: 900;
+  color: #10271D;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.tech-subtext {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 50px;
+  max-width: 500px;
+}
+
+.tech-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-family: var(--font-main);
+  font-size: 20px;
+  font-weight: 800;
+  color: #10271D;
+  margin: 0;
+}
+
+.profile-title {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.tech-right {
+  flex: 1.5;
+  display: flex;
+  gap: 40px;
+}
+
+.tech-right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.tech-para {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.quote-block {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.quote-icon {
+  font-family: var(--font-main);
+  font-size: 80px;
+  font-weight: 900;
+  color: #10271D;
+  line-height: 0.8;
+}
+
+.quote-text {
+  font-size: 18px;
+  color: #10271D;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.tech-content-blocks p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* Solar Solutions Section */
+.solar-solutions-section {
+  padding: 0 0 100px 0;
+  background-color: var(--bg-light);
+}
+
+.solar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.solar-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.solar-card-image {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+
+.solar-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.solar-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(16, 39, 29, 0.8) 0%, rgba(16, 39, 29, 0) 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 50px;
+  transition: all 0.4s ease;
+}
+
+.solar-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.solar-card-title {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white);
+  margin: 0;
+}
+
+.solar-card-arrow {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.solar-card:hover img {
+  transform: scale(1.1);
+}
+
+.solar-card:hover .solar-card-overlay {
+  background: linear-gradient(to top, rgba(16, 39, 29, 0.9) 0%, rgba(16, 39, 29, 0.2) 100%);
+}
+
+.solar-card:hover .solar-card-arrow {
+  background-color: var(--white);
+}
+
+.solar-card:hover .solar-card-arrow svg {
+  stroke: #10271D;
+}
+
+/* Maintenance Section */
+.maintenance-section {
+  padding: 0 0 150px 0;
+  background-color: var(--bg-light);
+}
+
+.maintenance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.maintenance-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.m-card-image {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.m-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.m-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+  transition: background 0.4s ease;
+}
+
+.m-card-number {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white);
+  opacity: 0.8;
+}
+
+.m-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.m-card-subtext {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  opacity: 0.9;
+}
+
+.m-card-title {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--white);
+  margin: 0;
+}
+
+.maintenance-card:hover img {
+  transform: scale(1.1);
+}
+
+.maintenance-card:hover .m-card-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%);
+}
+
+@media (max-width: 1024px) {
+  .tech-flex {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .tech-heading {
+    font-size: 48px;
+  }
+  .maintenance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .services-grid {
+    flex-direction: column;
+    gap: 80px;
+  }
+  .faq-flex {
+    flex-direction: column;
+    gap: 100px;
+  }
+  .clients-flex {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 60px;
+  }
+  .solar-grid {
+    grid-template-columns: 1fr;
+  }
+  .solar-card-image {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .maintenance-grid {
+    grid-template-columns: 1fr;
+  }
+  .m-card-image {
+    height: 400px;
+  }
+}

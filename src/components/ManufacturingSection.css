@@ -1,0 +1,125 @@
+.mfg-section {
+  padding: 150px 0;
+  background-color: var(--bg-light);
+  display: flex;
+  align-items: center;
+}
+
+.mfg-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+}
+
+.mfg-images-column {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+
+.mfg-bg-box {
+  position: absolute;
+  top: 0;
+  left: -200px;
+  width: 500px;
+  height: 100%;
+  background-color: rgba(16, 29, 24, 0.03);
+  z-index: 0;
+  border-radius: 40px;
+}
+
+.mfg-image-wrapper {
+  position: relative;
+  width: 315.17px;
+  height: 522.42px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  z-index: 1;
+}
+
+.mfg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mfg-content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mfg-subtitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--brand-green);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mfg-title {
+  font-family: var(--font-main);
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--brand-green);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.mfg-description {
+  font-size: 20px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 550px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.mfg-btn {
+  display: inline-block;
+  background-color: var(--brand-red);
+  color: var(--white);
+  padding: 18px 45px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  width: fit-content;
+  transition: var(--transition);
+}
+
+.mfg-btn:hover {
+  background-color: #c4191e;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(227, 30, 36, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .mfg-title {
+    font-size: 56px;
+  }
+  .mfg-image-wrapper {
+    width: 220px;
+    height: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .mfg-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .mfg-images-column {
+    justify-content: center;
+  }
+  .mfg-content-column {
+    align-items: center;
+  }
+  .mfg-bg-box {
+    display: none;
+  }
+}

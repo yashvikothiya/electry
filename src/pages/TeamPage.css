@@ -1,0 +1,332 @@
+.team-page {
+  width: 100%;
+}
+
+/* Hero Section */
+.team-hero {
+  height: 450px;
+  background-image: url('https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.team-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.team-title {
+  font-family: var(--font-main);
+  font-size: 82px;
+  font-weight: 900;
+  color: var(--white);
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.team-title .title-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80%;
+  height: 4px;
+  background-color: var(--brand-red);
+}
+
+/* Team Grid */
+.team-grid-section {
+  padding: 150px 0;
+  background-color: var(--bg-light);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.team-card {
+  background-color: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.team-card:hover .team-member-image img {
+  transform: scale(1.1);
+}
+
+.team-card-inner {
+  display: flex;
+  height: 100%;
+}
+
+.team-member-image {
+  flex: 1;
+  overflow: hidden;
+}
+
+.team-member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-member-info {
+  flex: 1.2;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.member-name {
+  font-family: var(--font-main);
+  font-size: 32px;
+  font-weight: 800;
+  color: #10271D;
+  margin-bottom: 5px;
+}
+
+.member-role {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 25px;
+  display: block;
+}
+
+.member-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.member-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(16, 39, 29, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10271D;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: #10271D;
+  color: var(--white);
+  border-color: #10271D;
+}
+
+@media (max-width: 1200px) {
+  .team-grid {
+    gap: 20px;
+  }
+  .team-member-info {
+    padding: 30px;
+  }
+  .member-name {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 992px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .team-hero {
+    height: 350px;
+  }
+  .team-title {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .team-card-inner {
+    flex-direction: column;
+  }
+  .team-member-image {
+    height: 300px;
+  }
+}
+
+/* Blog Section */
+.team-blog-section {
+  padding: 100px 0 150px 0;
+  background-color: var(--bg-light);
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.blog-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #10271D;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.blog-heading {
+  font-family: 'Stolzl', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #10271D;
+  margin-top: 10px;
+}
+
+.blog-carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-carousel {
+  display: flex;
+  gap: 30px;
+  transition: transform 0.5s ease;
+}
+
+.blog-card {
+  flex: 0 0 calc(33.333% - 20px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  background-color: var(--white);
+  padding: 80px 70px; /* Even larger internal padding */
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+
+.blog-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-meta {
+  font-size: 15px; /* Larger meta text */
+  font-weight: 700;
+  color: #10271D;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.blog-title {
+  font-family: var(--font-main);
+  font-size: 38px; /* Bigger titles */
+  font-weight: 800;
+  color: #10271D;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.blog-summary {
+  font-size: 18px; /* Larger summary text */
+  color: #10271D;
+  opacity: 0.7;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.blog-arrow {
+  margin-top: auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(16, 39, 29, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10271D;
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover .blog-arrow {
+  background-color: #10271D;
+  color: var(--white);
+  border-color: #10271D;
+}
+
+/* Carousel Nav Buttons */
+.carousel-nav {
+  position: absolute;
+  top: 175px; /* Middle of the image */
+  right: 0;
+  transform: translateY(-50%) translateX(50%); /* Center on the right edge of the card */
+  display: flex;
+  background-color: #000;
+  border-radius: 50px;
+  padding: 15px 25px;
+  gap: 20px;
+  z-index: 10;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-btn:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 1024px) {
+  .blog-heading {
+    font-size: 48px;
+  }
+  .blog-card {
+    flex: 0 0 calc(50% - 15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-card {
+    flex: 0 0 100%;
+  }
+  .blog-title {
+    font-size: 26px;
+  }
+}
