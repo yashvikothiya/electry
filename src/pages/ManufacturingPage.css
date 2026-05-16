@@ -256,26 +256,25 @@
 .factory-video-section {
   padding: 100px 0;
   background-color: var(--bg-light);
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
 }
 
 .video-container {
-  width: 100%;
-  height: 700px;
   position: relative;
-  border-radius: 0;
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 30px;
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
 .video-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.video-container:hover img {
-  transform: scale(1.05);
+  height: auto;
+  display: block;
 }
 
 .play-button {
@@ -283,20 +282,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 5;
 }
 
 .play-circle {
   width: 120px;
   height: 120px;
+  background: rgba(255, 255, 255, 0.1);
   border: 2px solid white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .play-circle span {
@@ -307,16 +306,238 @@
 }
 
 .video-container:hover .play-circle {
-  background: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   PIXEL-PERFECT VIDEO POPUP (REF IMAGE 2) - BALANCED BOX
+   ============================================================ */
+
+.manufacturing-video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Lighter backdrop as per ref */
+  backdrop-filter: blur(12px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #ffffff; 
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  border-radius: 20px;
+  border: 15px solid #ffffff; /* Increased border width as requested */
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0; 
+  overflow: hidden;
+  animation: modalScaleUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes modalScaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: none;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 100;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+/* Video Player Container - Truly Full */
+.custom-video-player {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+.factory-modal-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Large Central Play Button */
+.large-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Controls Bar - Overlay at bottom */
+.custom-controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  padding: 30px 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+}
+
+.play-pause-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.time-code {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  min-width: 45px;
+}
+
+/* Progress Bar Wrapper */
+.progress-slider-wrap {
+  flex: 1;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.progress-input-range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Invisible but clickable */
+  cursor: pointer;
+  z-index: 5;
+}
+
+.progress-slider {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vol-btn, .expand-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  .modal-content {
+    height: 500px;
+    padding: 30px 15px;
+  }
+  .custom-controls-bar {
+    gap: 8px;
+  }
+  .time-code {
+    font-size: 11px;
+    min-width: 35px;
+  }
 }
 
 @media (max-width: 768px) {
-  .video-container {
-    height: 350px;
+  .modal-content {
+    height: 70vh;
+    padding: 20px;
   }
-  .play-circle {
-    width: 80px;
-    height: 80px;
+  .large-play-btn {
+    width: 70px;
+    height: 70px;
+  }
+  .custom-controls-bar {
+    gap: 10px;
+    padding-top: 20px;
+  }
+  .time-code {
+    font-size: 11px;
+    min-width: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .manufacturing-title {
+    font-size: 42px;
+  }
+  .section-title {
+    font-size: 32px;
+  }
+  .mii-grid {
+    grid-template-columns: 1fr;
+  }
+  .manufacturing-grid {
+    grid-template-columns: 1fr;
+  }
+  .custom-controls-bar {
+    width: 95%;
+    height: 50px;
+    padding: 0 10px;
+    gap: 8px;
   }
 }

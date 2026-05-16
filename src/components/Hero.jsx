@@ -11,12 +11,12 @@ const Hero = () => {
         <div className="hero-main-content">
           <div className="hero-title-wrapper">
             <h1 className="hero-title">
-              <span className="title-line green-text">LED LIGHTING</span>
-              <span className="title-line">
-                <span className="red-text">MANUFACTURER</span>
-                <span className="green-text"> IN</span>
-              </span>
-              <span className="title-line green-text">INDIA</span>
+              <span className="green-text">LED LIGHTING</span>
+              <br />
+              <span className="red-text">MANUFACTURER</span>
+              <span className="green-text"> IN</span>
+              <br />
+              <span className="green-text">INDIA</span>
             </h1>
           </div>
 

@@ -1,0 +1,297 @@
+.category-page {
+  padding-bottom: 100px;
+  background-color: #F8FAF9;
+}
+
+.category-hero {
+  height: 650px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg');
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 80px;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 39, 29, 0.4); /* Dark branding overlay */
+}
+
+.category-title {
+  position: relative;
+  z-index: 2;
+  font-size: 64px;
+  font-weight: 900;
+  color: white;
+  text-align: center;
+  font-family: var(--font-heading);
+}
+
+.category-grid-section {
+  padding: 0 20px;
+}
+
+.category-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.category-post-card {
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.category-post-card:hover {
+  transform: translateY(-10px);
+}
+
+.card-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.category-post-card:hover .card-image-wrap img {
+  transform: scale(1.05);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.card-cat {
+  font-size: 12px;
+  font-weight: 800;
+  color: #10271D;
+  letter-spacing: 1px;
+}
+
+.card-sep {
+  color: #CBD5E1;
+}
+
+.card-date {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #10271D;
+  line-height: 1.4;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.category-post-card:hover .card-title {
+  color: #E31E24;
+}
+
+@media (max-width: 1024px) {
+  .category-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .category-hero {
+    height: 300px;
+  }
+  .category-title {
+    font-size: 40px;
+  }
+  .category-posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Post Type Specific Styles */
+.video-post {
+  position: relative;
+}
+
+.video-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.1);
+}
+
+.play-btn-circle {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.gallery-post {
+  position: relative;
+}
+
+.gallery-nav-btns {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-post-card:hover .gallery-nav-btns {
+  opacity: 1;
+}
+
+.gallery-nav-btn {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.audio-post-widget {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.audio-play-btn {
+  width: 40px;
+  height: 40px;
+  background: #F1F5F9;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.audio-line {
+  flex: 1;
+  height: 4px;
+  background: #E2E8F0;
+  border-radius: 2px;
+}
+
+.audio-vol-btn {
+  background: none;
+  border: none;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.audio-vol-line {
+  width: 40px;
+  height: 40px;
+  border-right: 4px solid #E31E24;
+}
+
+.quote-post-card-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  border-left: 4px solid #E31E24;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.quote-box-wrap {
+  margin-bottom: 20px;
+}
+
+.quote-icon-small {
+  margin-bottom: 15px;
+}
+
+.quote-text-main {
+  font-size: 18px;
+  font-weight: 600;
+  color: #10271D;
+  line-height: 1.6;
+}
+
+.quote-footer-desc {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.blog-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 60px;
+}
+
+.page-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #E2E8F0;
+  background: white;
+  color: #10271D;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-btn.active {
+  background: #10271D;
+  color: white;
+  border-color: #10271D;
+}
+
+.page-btn:hover:not(.active) {
+  border-color: #10271D;
+  color: #10271D;
+}

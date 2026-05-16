@@ -4,33 +4,6 @@ import './TrustHighlights.css';
 const TrustHighlights = () => {
   const highlights = [
     {
-      id: 1,
-      text: "Since 2012",
-      icon: (
-        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 30V75C20 83.2843 26.7157 90 35 90H65C73.2843 90 80 83.2843 80 75V30H20Z" fill="white" stroke="#E31E24" strokeWidth="4"/>
-          <path d="M20 30V15C20 12.2386 22.2386 10 25 10H75C77.7614 10 80 12.2386 80 15V30H20Z" fill="#E31E24"/>
-          <rect x="30" y="38" width="40" height="40" rx="20" fill="#E31E24"/>
-          <text x="50" y="65" textAnchor="middle" fontSize="24" fontWeight="900" fill="white" fontFamily="Arial">S</text>
-          <path d="M25 20H75" stroke="white" strokeWidth="2" strokeDasharray="4 4"/>
-        </svg>
-      )
-    },
-    {
-      id: 2,
-      text: "Made In India",
-      icon: (
-        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="50" cy="50" r="45" stroke="#E31E24" strokeWidth="3"/>
-          <circle cx="50" cy="50" r="38" stroke="#E31E24" strokeWidth="1" strokeDasharray="4 2"/>
-          <path d="M15 40H85V60H15V40Z" fill="#E31E24"/>
-          <text x="50" y="54" textAnchor="middle" fontSize="12" fontWeight="900" fill="white" fontFamily="Arial">INDIA</text>
-          <text x="50" y="32" textAnchor="middle" fontSize="8" fontWeight="700" fill="#E31E24" fontFamily="Arial">MADE IN</text>
-          <text x="50" y="75" textAnchor="middle" fontSize="8" fontWeight="700" fill="#E31E24" fontFamily="Arial">MADE IN</text>
-        </svg>
-      )
-    },
-    {
       id: 3,
       text: "In-House Manufacturing",
       icon: (

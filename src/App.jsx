@@ -7,7 +7,7 @@ import WhyChoose from './components/WhyChoose';
 import ManufacturingSection from './components/ManufacturingSection';
 import FactoryCTA from './components/FactoryCTA';
 import BlogSection from './components/BlogSection';
-import TrustHighlights from './components/TrustHighlights';
+
 import ContactCTA from './components/ContactCTA';
 import Footer from './components/Footer';
 
@@ -19,6 +19,7 @@ import ServicesPage from './pages/ServicesPage';
 import TeamPage from './pages/TeamPage';
 import BlogPostPage from './pages/BlogPostPage';
 import BlogPage from './pages/BlogPage';
+import CategoryPage from './pages/CategoryPage';
 
 const HomePage = () => (
   <main>
@@ -61,6 +62,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
         <Route path="/products" element={<div style={{padding: '200px', textAlign: 'center'}}>Products Page Coming Soon</div>} />
         <Route path="/why-savex" element={<WhySaveXPage />} />
         <Route path="/manufacturing" element={<ManufacturingPage />} />
@@ -74,7 +76,7 @@ function App() {
       
       {!hideGlobalSections && (
         <>
-          <TrustHighlights />
+
           <ContactCTA />
         </>
       )}

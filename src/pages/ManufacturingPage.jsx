@@ -1,12 +1,85 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ManufacturingPage.css';
 import factoryInterior from '../assets/led_factory_background.png';
 
 
 const ManufacturingPage = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
+  
+  const videoRef = useRef(null);
+  const playerContainerRef = useRef(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const toggleVideoModal = () => {
+    setIsVideoModalOpen(!isVideoModalOpen);
+    if (!isVideoModalOpen) {
+      setIsPlaying(true);
+      setCurrentTime(0);
+    }
+  };
+
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      setDuration(videoRef.current.duration);
+    }
+  };
+
+  const handleSeek = (e) => {
+    const seekTime = (e.target.value / 100) * duration;
+    if (videoRef.current) {
+      videoRef.current.currentTime = seekTime;
+      setCurrentTime(seekTime);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (playerContainerRef.current) {
+      if (!document.fullscreenElement) {
+        playerContainerRef.current.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <div className="manufacturing-page">
@@ -140,7 +213,7 @@ const ManufacturingPage = () => {
 
       {/* Factory Video Section */}
       <section className="manufacturing-main-section factory-video-section">
-        <div className="video-container">
+        <div className="video-container" onClick={toggleVideoModal}>
           <img src="https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg" alt="Factory Video" />
           <div className="play-button">
             <div className="play-circle">
@@ -150,6 +223,80 @@ const ManufacturingPage = () => {
         </div>
       </section>
 
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div className="manufacturing-video-modal" onClick={toggleVideoModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={toggleVideoModal}>&times;</button>
+            <div className="custom-video-player" ref={playerContainerRef}>
+              <video 
+                ref={videoRef}
+                src="https://savexelectricals.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-02-at-15.02.27.mp4?_=1" 
+                autoPlay 
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={handleLoadedMetadata}
+                className="factory-modal-video"
+                onClick={handlePlayPause}
+              />
+              {!isPlaying && (
+                <div className="large-play-overlay" onClick={handlePlayPause}>
+                  <div className="large-play-btn">
+                    <svg viewBox="0 0 24 24" fill="white" width="40" height="40">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+              <div className="custom-controls-bar">
+                <button className="play-pause-btn" onClick={handlePlayPause}>
+                  {isPlaying ? (
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
+                <span className="time-code">{formatTime(currentTime)}</span>
+                <div className="progress-slider-wrap">
+                  <input 
+                    type="range" 
+                    className="progress-input-range"
+                    min="0"
+                    max="100"
+                    value={duration ? (currentTime / duration) * 100 : 0}
+                    onChange={handleSeek}
+                  />
+                  <div className="progress-slider">
+                    <div className="progress-fill" style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}></div>
+                  </div>
+                </div>
+                <span className="time-code">{formatTime(duration)}</span>
+                <div className="controls-right">
+                  <button className="vol-btn" onClick={toggleMute}>
+                    {isMuted ? (
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                      </svg>
+                    )}
+                  </button>
+                  <button className="expand-btn" onClick={toggleFullscreen}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="18" height="18">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
