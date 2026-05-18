@@ -72,6 +72,7 @@ function App() {
         <Route path="/blog-post-1" element={<BlogPostPage />} />
         <Route path="/blog-post-2" element={<BlogPostPage />} />
         <Route path="/blog-post-3" element={<BlogPostPage />} />
+        <Route path="/blog-post-991" element={<BlogPostPage />} />
       </Routes>
       
       {!hideGlobalSections && (

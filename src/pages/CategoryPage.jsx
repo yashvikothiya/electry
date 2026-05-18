@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './CategoryPage.css';
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
+  const [galleryIndexes, setGalleryIndexes] = useState({});
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleGalleryPrev = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === 0 || prev[postId] === undefined) ? totalImages - 1 : prev[postId] - 1
+    }));
+  };
+
+  const handleGalleryNext = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === undefined || prev[postId] === totalImages - 1) ? 0 : prev[postId] + 1
+    }));
+  };
 
   const categoryData = {
     'energy': {
@@ -63,9 +86,18 @@ const CategoryPage = () => {
       heroBg: 'https://savexelectricals.com/wp-content/uploads/2026/02/Untitled-design-2_page-0001-scaled.jpg',
       posts: [
         { id: 1, title: "An opportunity for energy independence", category: "Technologies", date: "November 17, 2022", image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg", type: "image" },
-        { id: 2, title: "How to make solar work for any home", category: "Technologies", date: "November 17, 2022", image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image2-1290x725.jpg", type: "video" },
+        { id: 2, title: "How to make solar work for any home", category: "Technologies", date: "November 17, 2022", images: [
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6-840x473.jpg",
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg"
+        ], type: "gallery" },
         { id: 3, title: "Solar energy and the modern smart home", category: "Technologies", date: "November 17, 2022", type: "audio" },
-        { id: 4, title: "How to find the best solar companies in California", category: "Technologies", date: "November 17, 2022", image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image9-1290x725.jpg", type: "gallery" },
+        { id: 4, title: "How to find the best solar companies in California", category: "Technologies", date: "November 17, 2022", images: [
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6-840x473.jpg",
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg",
+          "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image2-1290x725.jpg"
+        ], type: "gallery" },
         { id: 5, title: "Quote Post", category: "Technologies", date: "November 17, 2022", type: "quote", quote: "Dipiscing elit, sed do eiusmod tempor incidunt ut labore adipiscing et dolore magna minim totam rem iste natus sit aliqua.", footerText: "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. nemo enim ipsam voluptatem, quia voluptas sit." }
       ]
     }
@@ -74,33 +106,47 @@ const CategoryPage = () => {
   const currentCategory = categoryData[categoryName] || categoryData['energy'];
 
   const renderPostMedia = (post) => {
+    const activeIndex = galleryIndexes[post.id] || 0;
+    
     switch(post.type) {
       case 'video':
         return (
           <div className="card-image-wrap video-post">
-            <img src={post.image} alt={post.title} />
-            <div className="video-play-overlay">
-              <div className="play-btn-circle">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
+            {post.videoUrl ? (
+              <video 
+                src={post.videoUrl} 
+                poster={post.image} 
+                controls 
+                className="inline-post-video"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            ) : (
+              <>
+                <img src={post.image} alt={post.title} />
+                <div className="video-play-overlay">
+                  <div className="play-btn-circle">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         );
       case 'gallery':
         return (
           <div className="card-image-wrap gallery-post">
-            <img src={post.image} alt={post.title} />
+            <img src={post.images[activeIndex]} alt={post.title} />
             <div className="gallery-nav-btns">
-              <button className="gallery-nav-btn prev">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="15 18 9 12 15 6"></polyline>
+              <button className="gallery-nav-btn prev" onClick={(e) => handleGalleryPrev(e, post.id, post.images.length)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                  <path d="M19 12H5M12 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button className="gallery-nav-btn next">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="9 18 15 12 9 6"></polyline>
+              <button className="gallery-nav-btn next" onClick={(e) => handleGalleryNext(e, post.id, post.images.length)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </button>
             </div>

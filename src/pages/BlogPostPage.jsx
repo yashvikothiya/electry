@@ -1,24 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import batteryStorageImg from '../assets/battery_storage.png';
+import blueHouseImg from '../assets/blue_house.png';
+import windmillImg from '../assets/windmill.png';
+import blog1 from '../assets/blog1.png';
+import blog2 from '../assets/blog2.png';
+import windfarmHillsImg from '../assets/windfarm_hills.png';
+import windfarmSunsetImg from '../assets/windfarm_sunset.png';
+import workersImg from '../assets/workers.png';
 import './BlogPostPage.css';
 
 const BlogPostPage = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const location = useLocation();
+
+  const galleryImages = [
+    blog1,
+    windmillImg,
+    blueHouseImg,
+    windfarmHillsImg,
+    windfarmSunsetImg,
+    workersImg
+  ];
+
+  const nextImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
   
   // Dynamic content based on path
   const isPost2 = location.pathname === '/blog-post-2';
   const isPost3 = location.pathname === '/blog-post-3';
+  const isPost991 = location.pathname === '/blog-post-991';
   
   const postData = {
-    title: isPost3 
-      ? "Tips to reduce your home's energy use" 
-      : (isPost2 ? "What are the profits of solar energy?" : "How many solar panels do you need?"),
-    heroImage: isPost3
-      ? "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4.jpg"
-      : (isPost2 
-        ? "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3.jpg"
-        : "https://savexelectricals.com/wp-content/uploads/2020/04/post-image1.jpg")
+    title: isPost991
+      ? "An opportunity for energy independence"
+      : (isPost3 
+        ? "Tips to reduce your home's energy use" 
+        : (isPost2 ? "What are the profits of solar energy?" : "How many solar panels do you need?")),
+    heroImage: isPost991
+      ? "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg"
+      : (isPost3
+        ? "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4.jpg"
+        : (isPost2 
+          ? "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3.jpg"
+          : "https://savexelectricals.com/wp-content/uploads/2020/04/post-image1.jpg")),
+    category: isPost991 ? "TECHNOLOGIES" : "ENERGY",
+    date: isPost991 ? "November 17, 2022" : "April 12, 2020",
+    comments: isPost991 ? "3 Comments" : "0 Comments",
+    videoThumbnail: isPost991 ? batteryStorageImg : "https://savexelectricals.com/wp-content/uploads/2020/04/manufacturing-image.jpg",
+    likeCount: isPost991 ? 0 : 2
   };
 
   // Scroll to top on mount
@@ -37,7 +77,7 @@ const BlogPostPage = () => {
         />
         
         <div className="container hero-content">
-          <div className="category-badge">ENERGY</div>
+          <div className="category-badge">{postData.category}</div>
           <h1 className="hero-title">{postData.title}</h1>
           
           <div className="post-meta-row">
@@ -48,9 +88,9 @@ const BlogPostPage = () => {
               <span className="meta-text">SCOLUSINFOTECH@GMAIL.COM</span>
             </div>
             <span className="meta-dot">•</span>
-            <span className="meta-text">April 12, 2020</span>
+            <span className="meta-text">{postData.date}</span>
             <span className="meta-dot">•</span>
-            <span className="meta-text">0 Comments</span>
+            <span className="meta-text">{postData.comments}</span>
           </div>
         </div>
       </section>
@@ -90,7 +130,7 @@ const BlogPostPage = () => {
 
           <div className="blog-video-section">
             <div className="video-thumbnail" onClick={() => setIsVideoOpen(true)}>
-              <img src="https://savexelectricals.com/wp-content/uploads/2020/04/manufacturing-image.jpg" alt="Video Thumbnail" />
+              <img src={postData.videoThumbnail} alt="Video Thumbnail" />
               <div className="play-button-overlay">
                 <div className="play-icon-circle">
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
@@ -124,7 +164,7 @@ const BlogPostPage = () => {
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
                   </div>
-                  <span className="like-count">2</span>
+                  <span className="like-count">{postData.likeCount}</span>
                 </button>
               </div>
 
@@ -133,12 +173,16 @@ const BlogPostPage = () => {
               <div className="post-navigation">
                 <div className="nav-item prev">
                   <span className="nav-label">{"<"} PREVIOUS</span>
-                  <h4 className="nav-title">What are the profits of solar energy?</h4>
+                  <h4 className="nav-title">
+                    {isPost991 ? "How to make solar work for any home" : "What are the profits of solar energy?"}
+                  </h4>
                 </div>
-                <div className="nav-item next">
-                  <span className="nav-label">NEXT {">"}</span>
-                  <h4 className="nav-title">Is solar worth it? Find out this summer!</h4>
-                </div>
+                {!isPost991 && (
+                  <div className="nav-item next">
+                    <span className="nav-label">NEXT {">"}</span>
+                    <h4 className="nav-title">Is solar worth it? Find out this summer!</h4>
+                  </div>
+                )}
               </div>
 
               {/* About Author Card */}
@@ -159,6 +203,67 @@ const BlogPostPage = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Specific Comments List for Post 991 */}
+              {isPost991 && (
+                <div className="post-comments-list">
+                  <h2 className="comment-section-title">3 Comments</h2>
+                  
+                  <div className="comment-item">
+                    <div className="comment-avatar">
+                      <img src="https://secure.gravatar.com/avatar/10a8cc17c9bbcc7716d23e090a6c37257dbf84b9757afaa6e920ecfef129af5f?s=90&d=mm&r=g" alt="Dorothy" />
+                    </div>
+                    <div className="comment-content">
+                      <div className="comment-header">
+                        <h4 className="comment-author">Dorothy</h4>
+                        <span className="comment-date">November 27, 2022 at 10:04 am</span>
+                      </div>
+                      <p className="comment-text">
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+                      </p>
+                      <button className="comment-reply-btn">
+                        Reply <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="comment-item reply-comment">
+                    <div className="comment-avatar">
+                      <img src="https://secure.gravatar.com/avatar/bbef7f2c275ad2c8cfd6c116832b0a8e89fd878015e056e6d1f483e4d5c5bc07?s=90&d=mm&r=g" alt="Kevin" />
+                    </div>
+                    <div className="comment-content">
+                      <div className="comment-header">
+                        <h4 className="comment-author">Kevin</h4>
+                        <span className="comment-date">November 27, 2022 at 10:04 am</span>
+                      </div>
+                      <p className="comment-text">
+                        Aenean et egestas nulla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                      </p>
+                      <button className="comment-reply-btn">
+                        Reply <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="comment-item">
+                    <div className="comment-avatar">
+                      <img src="https://secure.gravatar.com/avatar/afb88f961edb998f38a69753d7f36341a4421dad9c77571add51a66d26464493?s=90&d=mm&r=g" alt="Roxy" />
+                    </div>
+                    <div className="comment-content">
+                      <div className="comment-header">
+                        <h4 className="comment-author">Roxy</h4>
+                        <span className="comment-date">November 27, 2022 at 10:05 am</span>
+                      </div>
+                      <p className="comment-text">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                      </p>
+                      <button className="comment-reply-btn">
+                        Reply <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Leave a Comment Section */}
               <div className="leave-comment-section">
@@ -195,24 +300,55 @@ const BlogPostPage = () => {
               <div className="related-posts-section">
                 <h2 className="related-section-title">You May Also Like</h2>
                 <div className="related-posts-grid">
-                  <div className="related-post-card">
-                    <div className="related-post-image">
-                      <img src="https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-890x664.jpg" alt="Related Post 1" />
-                    </div>
-                    <div className="related-post-info">
-                      <span className="related-post-category">ENERGY</span>
-                      <h4 className="related-post-title">What are the profits of solar energy?</h4>
-                    </div>
-                  </div>
-                  <div className="related-post-card">
-                    <div className="related-post-image">
-                      <img src="https://savexelectricals.com/wp-content/uploads/2020/04/post-image1-890x664.jpg" alt="Related Post 2" />
-                    </div>
-                    <div className="related-post-info">
-                      <span className="related-post-category">ENERGY</span>
-                      <h4 className="related-post-title">Tips to reduce your home's energy use</h4>
-                    </div>
-                  </div>
+                  {isPost991 ? (
+                    <>
+                      {/* First Card: Gallery */}
+                      <div className="related-post-card">
+                        <div className="related-post-image gallery-style">
+                          <img src={galleryImages[galleryIndex]} alt="Related Gallery" />
+                          <button className="gallery-slider-btn prev" onClick={prevImage}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10271D" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                          </button>
+                          <button className="gallery-slider-btn next" onClick={nextImage}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10271D" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                          </button>
+                        </div>
+                        <div className="related-post-info">
+                          <span className="related-post-category">TECHNOLOGIES</span>
+                          <h4 className="related-post-title">How to find the best solar companies in California</h4>
+                        </div>
+                      </div>
+
+                      {/* Second Card: Quote Post (No Image) */}
+                      <div className="related-post-card quote-style">
+                        <div className="related-post-info">
+                          <span className="related-post-category">TECHNOLOGIES</span>
+                          <h4 className="related-post-title">Quote Post</h4>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="related-post-card">
+                        <div className="related-post-image">
+                          <img src="https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-890x664.jpg" alt="Related Post 1" />
+                        </div>
+                        <div className="related-post-info">
+                          <span className="related-post-category">ENERGY</span>
+                          <h4 className="related-post-title">What are the profits of solar energy?</h4>
+                        </div>
+                      </div>
+                      <div className="related-post-card">
+                        <div className="related-post-image">
+                          <img src="https://savexelectricals.com/wp-content/uploads/2020/04/post-image1-890x664.jpg" alt="Related Post 2" />
+                        </div>
+                        <div className="related-post-info">
+                          <span className="related-post-category">ENERGY</span>
+                          <h4 className="related-post-title">Tips to reduce your home's energy use</h4>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

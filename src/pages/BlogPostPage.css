@@ -119,9 +119,9 @@
 .blog-text-content {
   max-width: 800px;
   margin: 0 auto;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.8;
-  color: #3d4a43;
+  color: #53625A;
 }
 
 .drop-quote-section {
@@ -131,37 +131,37 @@
 
 .drop-cap-q {
   float: left;
-  font-size: 100px;
+  font-size: 65px;
   font-weight: 900;
   color: #10271D;
-  line-height: 0.8;
+  line-height: 0.85;
   margin-right: 20px;
-  margin-top: 10px;
+  margin-top: 8px;
   font-family: var(--font-main);
 }
 
 .content-subheading {
   font-family: var(--font-main);
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 800;
   color: #10271D;
-  margin: 60px 0 30px 0;
+  margin: 50px 0 30px 0;
 }
 
 .blog-testimonial-card {
   background-color: #fff;
-  padding: 60px 80px;
-  border-radius: 24px;
-  margin-top: 80px;
-  box-shadow: 0 20px 50px rgba(16, 39, 29, 0.05);
+  padding: 50px 60px;
+  border-radius: 16px;
+  margin-top: 50px;
+  box-shadow: 0 10px 30px rgba(16, 39, 29, 0.03);
 }
 
 .testimonial-text {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   color: #10271D;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  line-height: 1.7;
+  margin-bottom: 30px;
 }
 
 .testimonial-author {
@@ -172,12 +172,12 @@
 
 .author-line {
   width: 40px;
-  height: 3px;
-  background-color: #7DBA9B;
+  height: 2px;
+  background-color: #8DC63F;
 }
 
 .author-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   color: #10271D;
 }
@@ -300,19 +300,19 @@
 
 .post-tag {
   background-color: #fff;
-  padding: 8px 20px;
+  padding: 8px 22px;
   border-radius: 50px;
   font-size: 14px;
   font-weight: 500;
-  color: #555;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  color: #53625A;
+  border: 1px solid rgba(16, 39, 29, 0.15);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .post-tag:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  border-color: var(--brand-red, #ff3131);
   color: var(--brand-red, #ff3131);
 }
 
@@ -468,6 +468,84 @@
   color: var(--brand-red, #ff3131);
 }
 
+/* Comments List Styling */
+.post-comments-list {
+  margin-top: 100px;
+  margin-bottom: 80px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.comment-item.reply-comment {
+  margin-left: 120px;
+}
+
+.comment-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.comment-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.comment-author {
+  font-size: 18px;
+  font-weight: 800;
+  color: #10271D;
+  margin: 0;
+}
+
+.comment-date {
+  font-size: 14px;
+  color: #7b8a82;
+}
+
+.comment-text {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #53625A;
+  margin-bottom: 15px;
+}
+
+.comment-reply-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 800;
+  color: #10271D;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.comment-reply-btn:hover {
+  color: var(--brand-red, #ff3131);
+}
+
 /* Leave a Comment Styling */
 .leave-comment-section {
   margin-top: 80px;
@@ -586,22 +664,69 @@
 }
 
 .related-post-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
 }
 
 .related-post-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.related-post-card:hover .related-post-image {
-  transform: translateY(-10px);
+.related-post-card:not(.gallery-style):hover .related-post-image img {
+  transform: scale(1.05);
+}
+
+/* Gallery Style in Related Posts */
+.related-post-image.gallery-style {
+  display: flex;
+  align-items: center;
+}
+
+.gallery-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-slider-btn:hover {
+  background-color: var(--brand-red, #ff3131);
+}
+
+.gallery-slider-btn:hover svg {
+  stroke: #fff;
+}
+
+.gallery-slider-btn.prev {
+  left: 20px;
+}
+
+.gallery-slider-btn.next {
+  right: 20px;
+}
+
+/* Quote Style in Related Posts */
+.related-post-card.quote-style .related-post-title {
+  font-size: 32px;
+  margin-top: 15px;
 }
 
 .related-post-info {

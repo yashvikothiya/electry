@@ -169,8 +169,14 @@
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 0.8; /* Always visible but slightly soft */
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: none; /* Allow clicking buttons underneath */
+}
+
+.gallery-nav-btns button {
+  pointer-events: auto; /* Re-enable for actual buttons */
 }
 
 .category-post-card:hover .gallery-nav-btns {
@@ -188,6 +194,41 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Black Badge Navigation Style */
+.gallery-badge-nav {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #10271D; /* Dark branding black */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-badge-nav:hover {
+  transform: scale(1.1);
+}
+
+.badge-btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.badge-btn-wrap:hover {
+  opacity: 0.7;
 }
 
 .audio-post-widget {

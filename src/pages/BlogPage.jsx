@@ -1,26 +1,141 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import blog1 from '../assets/blog1.png';
+import blog2 from '../assets/blog2.png';
+import blog3 from '../assets/blog3.png';
+import plantImg from '../assets/plant.png';
+import windmillImg from '../assets/windmill.png';
+import workersImg from '../assets/workers.png';
+import windfarmHillsImg from '../assets/windfarm_hills.png';
+import windfarmSunsetImg from '../assets/windfarm_sunset.png';
 import './BlogPage.css';
 
 import blueHouseImg from '../assets/blue_house.png';
+import batteryStorageImg from '../assets/battery_storage.png';
 
 const BlogPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [galleryIndexes, setGalleryIndexes] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 8;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleGalleryPrev = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === 0 || prev[postId] === undefined) ? totalImages - 1 : prev[postId] - 1
+    }));
+  };
+
+  const handleGalleryNext = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === undefined || prev[postId] === totalImages - 1) ? 0 : prev[postId] + 1
+    }));
+  };
+
   const allPosts = [
+    {
+      id: 991,
+      title: "An opportunity for energy Independence",
+      category: "Technologies",
+      date: "November 17, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 992,
+      title: "How to make solar work for any home",
+      category: "Technologies",
+      date: "November 17, 2022",
+      image: batteryStorageImg,
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "video",
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+    },
+    {
+      id: 993,
+      title: "Solar energy and the modern smart home",
+      category: "Technologies",
+      date: "November 17, 2022",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "audio"
+    },
+    {
+      id: 994,
+      title: "How to find the best solar companies in California",
+      category: "Technologies",
+      date: "November 17, 2022",
+      images: [
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4.jpg",
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6.jpg"
+      ],
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "gallery"
+    },
+    {
+      id: 995,
+      title: "Quote Post",
+      category: "Technologies",
+      date: "November 17, 2022",
+      quote: "Dipiscing elit, sed do eiusmod tempor incidunt ut labore adipiscing et dolore magna minim totam rem iste natus sit aliqua.",
+      footerText: "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. nemo enim ipsam voluptatem, quia voluptas sit.",
+      type: "quote"
+    },
+    {
+      id: 996,
+      title: "Do you need a roof to go solar?",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 10,
+      title: "Solar for schools: savings and a better future",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image3-840x473.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 11,
+      title: "How a solar battery protects your home",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image2-840x473.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 13,
+      title: "How to find a solar company near me",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image11-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
     {
       id: 1,
       title: "An opportunity for energy independence",
       category: "Technologies",
       date: "November 17, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
     {
@@ -28,7 +143,7 @@ const BlogPage = () => {
       title: "How many solar panels do you need?",
       category: "Technologies",
       date: "November 17, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "video",
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
@@ -38,7 +153,30 @@ const BlogPage = () => {
       title: "How to make solar work for any home",
       category: "Technologies",
       date: "November 17, 2022",
-      image: blueHouseImg, /* Moved to 3rd position globally */
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+      images: [
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6-840x473.jpg",
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
+        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg"
+      ],
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "gallery"
+    },
+    {
+      id: 12,
+      title: "Are solar batteries worth the investment?",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/typography-image2-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
+    {
+      id: 14,
+      title: "Solar panels: everything you need to know",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image10-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
@@ -56,26 +194,125 @@ const BlogPage = () => {
       title: "Do you need a roof to go solar?",
       category: "Solar Power",
       date: "November 16, 2022",
-      image: blueHouseImg,
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
     {
       id: 8,
-      title: "Solar for schools: savings and a better future",
-      category: "Solar Power",
+      title: "How sustainable hydropower can promote biodiversity",
+      category: "Hydropower",
       date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg",
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
     {
       id: 9,
-      title: "How a solar battery protects your home",
-      category: "Solar Power",
-      date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-1290x725.jpg", /* Sunset windmills */
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      title: "Rising prices: the time for solar is now!",
+      category: "Green Power",
+      date: "November 10, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image9-1290x725.jpg", 
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 15,
+      title: "Understanding the current solar tariffs",
+      category: "Green Power",
+      date: "November 10, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 16,
+      title: "Is your smart home ready for summer?",
+      category: "Green Power",
+      date: "November 10, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image7-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 17,
+      title: "Is solar worth it? Find out this summer!",
+      category: "Green Power",
+      date: "November 10, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image9-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 18,
+      title: "How many solar panels do you need?",
+      category: "Energy",
+      date: "April 12, 2020",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
+      excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
+      type: "image"
+    },
+    {
+      id: 19,
+      title: "What are the profits of solar energy?",
+      category: "Energy",
+      date: "April 12, 2020",
+      image: blog1,
+      excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
+      type: "image"
+    },
+    {
+      id: 20,
+      title: "Tips to reduce your home's energy use",
+      category: "Energy",
+      date: "April 12, 2020",
+      image: blog2,
+      excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
+      type: "image"
+    },
+    {
+      id: 21,
+      title: "Harnessing the power of solar panels",
+      category: "News",
+      date: "April 11, 2020",
+      image: blog3,
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 22,
+      title: "Solar power is making renewable energy",
+      category: "News",
+      date: "April 10, 2020",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image6-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 23,
+      title: "The environmental impact of wind turbines",
+      category: "News",
+      date: "April 9, 2020",
+      image: plantImg,
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 24,
+      title: "Innovations in wind energy",
+      category: "News",
+      date: "April 9, 2020",
+      image: windmillImg,
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      type: "image"
+    },
+    {
+      id: 25,
+      title: "Which energy is the better investment?",
+      category: "News",
+      date: "April 8, 2020",
+      image: workersImg,
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     }
   ];
@@ -85,6 +322,12 @@ const BlogPage = () => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  // Pagination Logic
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   const categories = [
     { name: 'Energy', count: 3 },
@@ -112,21 +355,12 @@ const BlogPage = () => {
       {/* Blog Main Section */}
       <section className="blog-main-content">
         <div className="container">
-          <div className="blog-top-nav">
-            <Link to="/about-us" className="blog-back-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-              </svg>
-            </Link>
-          </div>
-
           <div className="blog-grid-layout">
             
             {/* Left Column: Posts */}
             <div className="blog-posts-column">
-              {filteredPosts.length > 0 ? (
-                filteredPosts.map((post, index) => (
+              {currentPosts.length > 0 ? (
+                currentPosts.map((post, index) => (
                   <React.Fragment key={post.id}>
                     <article className="blog-post-item">
                       {/* Media (Top) */}
@@ -185,24 +419,49 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'gallery' ? (
                             <div className="post-image-wrapper gallery-post">
-                              <img src={post.image} alt={post.title} className="post-featured-img" />
+                              <img src={post.images[galleryIndexes[post.id] || 0]} alt={post.title} className="post-featured-img" />
                               <div className="gallery-nav-btns">
-                                <button className="gallery-prev-btn">
-                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                <button className="gallery-nav-btn prev" onClick={(e) => handleGalleryPrev(e, post.id, post.images.length)}>
+                                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
                                   </svg>
                                 </button>
-                                <button className="gallery-next-btn">
-                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                <button className="gallery-nav-btn next" onClick={(e) => handleGalleryNext(e, post.id, post.images.length)}>
+                                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
                                   </svg>
                                 </button>
                               </div>
-                              <div className="gallery-pulse-point"></div>
+                            </div>
+                          ) : post.type === 'audio' ? (
+                            <div className="post-audio-player">
+                              <div className="audio-controls">
+                                <button className="audio-play-small">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+                                  </svg>
+                                </button>
+                                <span className="audio-time">00:00</span>
+                                <div className="audio-progress-bar"></div>
+                                <span className="audio-time">00:00</span>
+                                <button className="audio-volume-btn">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="9 10 7 11 7 13 9 14 11 16 11 8 9 10" fill="currentColor"></polygon>
+                                    <path d="M14.5 10.5a2.5 2.5 0 0 1 0 3"></path>
+                                  </svg>
+                                </button>
+                                <div className="audio-volume-bar">
+                                  <div className="audio-volume-fill"></div>
+                                </div>
+                              </div>
                             </div>
                           ) : post.type === 'image' ? (
                             <div className="post-image-wrapper">
-                              <img src={post.image} alt={post.title} className="post-featured-img" />
+                              <Link to={`/blog-post-${post.id}`}>
+                                <img src={post.image} alt={post.title} className="post-featured-img" />
+                              </Link>
                             </div>
                           ) : null}
                         </div>
@@ -217,6 +476,7 @@ const BlogPage = () => {
                         </div>
                         <p className="post-excerpt">{post.excerpt}</p>
                         <Link to={`/blog-post-${post.id}`} className="post-read-more-link">
+                          <span className="read-more-text">read more</span>
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -239,6 +499,7 @@ const BlogPage = () => {
                           </div>
                           <p className="quote-footer-text">{post.footerText}</p>
                           <Link to={`/blog-post-${post.id}`} className="post-read-more-link mt-20">
+                            <span className="read-more-text">read more</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <line x1="5" y1="12" x2="19" y2="12"></line>
                               <polyline points="12 5 19 12 12 19"></polyline>
@@ -276,33 +537,6 @@ const BlogPage = () => {
                       )}
                     </article>
 
-                    {/* Standalone Audio Player between 2nd and 3rd posts */}
-                    {index === 1 && (
-                      <article className="blog-post-item audio-standalone-widget">
-                        <div className="post-audio-player">
-                          <div className="audio-controls">
-                            <button className="audio-play-small">
-                              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-                                <path d="M8 5v14l11-7z" />
-                              </svg>
-                            </button>
-                            <span className="audio-time">00:00</span>
-                            <div className="audio-progress-bar">
-                              <div className="audio-progress-fill"></div>
-                            </div>
-                            <span className="audio-time">00:00</span>
-                            <button className="audio-volume-btn">
-                              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
-                              </svg>
-                            </button>
-                            <div className="audio-volume-bar">
-                              <div className="audio-volume-fill"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    )}
                   </React.Fragment>
                 ))
               ) : (
@@ -314,16 +548,37 @@ const BlogPage = () => {
 
               {/* Pagination Section */}
               <div className="blog-pagination">
-                <button className="pagination-btn active">1</button>
-                <button className="pagination-btn">2</button>
-                <button className="pagination-btn">3</button>
-                <button className="pagination-btn">4</button>
-                <button className="pagination-btn next-btn">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
+                {currentPage > 1 && (
+                  <button 
+                    className="pagination-btn prev-btn"
+                    onClick={() => {setCurrentPage(currentPage - 1); window.scrollTo(0, 0);}}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <line x1="19" y1="12" x2="5" y2="12"></line>
+                      <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                  </button>
+                )}
+                {[...Array(totalPages)].map((_, i) => (
+                  <button 
+                    key={i + 1}
+                    className={`pagination-btn ${currentPage === i + 1 ? 'active' : ''}`}
+                    onClick={() => {setCurrentPage(i + 1); window.scrollTo(0, 0);}}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                {currentPage < totalPages && (
+                  <button 
+                    className="pagination-btn next-btn"
+                    onClick={() => {setCurrentPage(currentPage + 1); window.scrollTo(0, 0);}}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
 
@@ -339,7 +594,7 @@ const BlogPage = () => {
                     </svg>
                     <input 
                       type="text" 
-                      placeholder="Search ..." 
+                      placeholder="Search .." 
                       className="sidebar-search-input"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
@@ -372,10 +627,10 @@ const BlogPage = () => {
                 <div className="sidebar-widget recent-posts-widget">
                   <h3 className="widget-title">Recent Posts</h3>
                   <div className="recent-posts-list">
-                    {allPosts.slice(0, 2).map(post => (
+                    {allPosts.filter(post => post.id === 1 || post.id === 2).map(post => (
                       <Link key={post.id} to={`/blog-post-${post.id}`} className="recent-post-small">
                         <div className="recent-thumb">
-                          <img src={post.image} alt="Thumb" />
+                          <img src={post.image || (post.images && post.images[0])} alt="Thumb" />
                         </div>
                         <div className="recent-info">
                           <div className="recent-meta">{post.category.toUpperCase()} • Nov 17, 2022</div>
