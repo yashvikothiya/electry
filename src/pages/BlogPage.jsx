@@ -368,7 +368,7 @@ const BlogPage = () => {
                                 ></iframe>
                               ) : (
                                 <>
-                                  <Link to={`/blog-post-${post.id}`}>
+                                  <Link to={`/blog-post/${post.id}`}>
                                     <img src={post.image} alt={post.title} className="post-featured-img" />
                                   </Link>
                                   <div className="video-play-btn" onClick={() => setPlayingVideoId(post.id)}>
@@ -381,7 +381,7 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'gallery-dark' ? (
                             <div className="post-image-wrapper gallery-post dark-nav">
-                              <Link to={`/blog-post-${post.id}`} state={{ imageIndex: 0 }}>
+                              <Link to={`/blog-post/${post.id}`} state={{ imageIndex: 0 }}>
                                 <img src={post.image} alt={post.title} className="post-featured-img" />
                               </Link>
                               <div className="gallery-dark-control">
@@ -410,7 +410,7 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'gallery' ? (
                             <div className="post-image-wrapper gallery-post">
-                              <Link to={`/blog-post-${post.id}`} state={{ imageIndex: galleryIndexes[post.id] || 0 }}>
+                              <Link to={`/blog-post/${post.id}`} state={{ imageIndex: galleryIndexes[post.id] || 0 }}>
                                 <img src={post.images[galleryIndexes[post.id] || 0]} alt={post.title} className="post-featured-img" />
                               </Link>
                               <div className="gallery-nav-btns">
@@ -452,7 +452,7 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'image' ? (
                             <div className="post-image-wrapper">
-                              <Link to={`/blog-post-${post.id}`}>
+                              <Link to={`/blog-post/${post.id}`}>
                                 <img src={post.image} alt={post.title} className="post-featured-img" />
                               </Link>
                             </div>
@@ -468,7 +468,7 @@ const BlogPage = () => {
                           <span className="post-date">{post.date}</span>
                         </div>
                         <p className="post-excerpt">{post.excerpt}</p>
-                        <Link to={`/blog-post-${post.id}`} className="post-read-more-link">
+                        <Link to={`/blog-post/${post.id}`} className="post-read-more-link">
                           <span className="read-more-text">read more</span>
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -491,7 +491,7 @@ const BlogPage = () => {
                             </blockquote>
                           </div>
                           <p className="quote-footer-text">{post.footerText}</p>
-                          <Link to={`/blog-post-${post.id}`} className="post-read-more-link mt-20">
+                          <Link to={`/blog-post/${post.id}`} className="post-read-more-link mt-20">
                             <span className="read-more-text">read more</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -621,7 +621,7 @@ const BlogPage = () => {
                   <h3 className="widget-title">Recent Posts</h3>
                   <div className="recent-posts-list">
                     {allPosts.filter(post => post.id === 1 || post.id === 2).map(post => (
-                      <Link key={post.id} to={`/blog-post-${post.id}`} className="recent-post-small">
+                      <Link key={post.id} to={`/blog-post/${post.id}`} className="recent-post-small">
                         <div className="recent-thumb">
                           <img src={post.image || (post.images && post.images[0])} alt="Thumb" />
                         </div>

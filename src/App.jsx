@@ -53,7 +53,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const hideGlobalSections = location.pathname === '/services' || location.pathname === '/our-team' || location.pathname === '/why-savex' || location.pathname.startsWith('/blog-post-');
+  const hideGlobalSections = location.pathname === '/services' || location.pathname === '/our-team' || location.pathname === '/why-savex' || location.pathname.startsWith('/blog-post/');
 
   return (
     <div className="app-wrapper">
@@ -69,10 +69,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/our-team" element={<TeamPage />} />
-        <Route path="/blog-post-1" element={<BlogPostPage />} />
-        <Route path="/blog-post-2" element={<BlogPostPage />} />
-        <Route path="/blog-post-3" element={<BlogPostPage />} />
-        <Route path="/blog-post-991" element={<BlogPostPage />} />
+        <Route path="/blog-post/:id" element={<BlogPostPage />} />
       </Routes>
       
       {!hideGlobalSections && (
