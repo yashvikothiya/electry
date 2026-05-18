@@ -57,7 +57,7 @@ const BlogPostPage = () => {
     category: isPost991 ? "TECHNOLOGIES" : "ENERGY",
     date: isPost991 ? "November 17, 2022" : "April 12, 2020",
     comments: isPost991 ? "3 Comments" : "0 Comments",
-    videoThumbnail: isPost991 ? batteryStorageImg : "https://savexelectricals.com/wp-content/uploads/2020/04/manufacturing-image.jpg",
+    videoThumbnail: batteryStorageImg,
     likeCount: isPost991 ? 0 : 2
   };
 
@@ -368,7 +368,7 @@ const BlogPostPage = () => {
                   <iframe 
                     width="100%" 
                     height="100%" 
-                    src="https://www.youtube.com/embed/5mI69yNoO2o?autoplay=1" 
+                    src="https://www.youtube.com/embed/SQpbTTGe_gk?autoplay=1" 
                     title="YouTube video player" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

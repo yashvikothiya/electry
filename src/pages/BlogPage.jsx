@@ -13,37 +13,7 @@ import './BlogPage.css';
 import blueHouseImg from '../assets/blue_house.png';
 import batteryStorageImg from '../assets/battery_storage.png';
 
-const BlogPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [playingVideoId, setPlayingVideoId] = useState(null);
-  const [galleryIndexes, setGalleryIndexes] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 8;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const handleGalleryPrev = (e, postId, totalImages) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setGalleryIndexes(prev => ({
-      ...prev,
-      [postId]: (prev[postId] === 0 || prev[postId] === undefined) ? totalImages - 1 : prev[postId] - 1
-    }));
-  };
-
-  const handleGalleryNext = (e, postId, totalImages) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setGalleryIndexes(prev => ({
-      ...prev,
-      [postId]: (prev[postId] === undefined || prev[postId] === totalImages - 1) ? 0 : prev[postId] + 1
-    }));
-  };
-
-  const allPosts = [
+export const allPosts = [
     {
       id: 991,
       title: "An opportunity for energy Independence",
@@ -61,7 +31,7 @@ const BlogPage = () => {
       image: batteryStorageImg,
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "video",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+      videoUrl: "https://www.youtube.com/embed/SQpbTTGe_gk?autoplay=1"
     },
     {
       id: 993,
@@ -122,89 +92,83 @@ const BlogPage = () => {
     },
     {
       id: 13,
-      title: "How to find a solar company near me",
-      category: "Solar Power",
+      title: "Who is advancing solar technology today?",
+      category: "SOLAR POWER",
       date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image11-1290x725.jpg",
+      image: windfarmHillsImg,
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
     {
       id: 1,
-      title: "An opportunity for energy independence",
-      category: "Technologies",
-      date: "November 17, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
-    },
-    {
-      id: 5,
-      title: "How many solar panels do you need?",
-      category: "Technologies",
-      date: "November 17, 2022",
+      title: "What factors affect the cost of a business going solar?",
+      category: "Solar Power",
+      date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "video",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-    },
-    {
-      id: 2,
-      title: "How to make solar work for any home",
-      category: "Technologies",
-      date: "November 17, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
-      images: [
-        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6-840x473.jpg",
-        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
-        "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg"
-      ],
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "gallery"
+      type: "image"
     },
     {
       id: 12,
       title: "Are solar batteries worth the investment?",
       category: "Solar Power",
       date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/typography-image2-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2020/04/post-image2-1024x683.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
+    {
+      id: 5,
+      title: "How to find a solar company near me",
+      category: "SOLAR POWER",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image9-1024x683.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
     {
       id: 14,
-      title: "Solar panels: everything you need to know",
+      title: "Commercial solar power systems: a guide",
       category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image8-1024x683.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
+    {
+      id: 6,
+      title: "Become a solar energy expert in 6 simple steps",
+      category: "Solar Power",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/typography-image2-1024x683.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
+    {
+      id: 7,
+      title: "What effects does hydropower have on the environment?",
+      category: "Hydropower",
+      date: "November 16, 2022",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image11-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
+      type: "image"
+    },
+    {
+      id: 8,
+      title: "Facts about the potential of hydroelectric power",
+      category: "Hydropower",
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image10-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
     {
-      id: 6,
-      title: "Quote Post",
-      category: "Technologies",
-      date: "November 17, 2022",
-      quote: "Dipiscing elit, sed do eiusmod tempor incidunt ut labore adipiscing et dolore magna minim totam rem iste natus sit aliqua.",
-      footerText: "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. nemo enim ipsam voluptatem, quia voluptas sit.",
-      type: "quote"
-    },
-    {
-      id: 7,
-      title: "Do you need a roof to go solar?",
-      category: "Solar Power",
-      date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
-    },
-    {
-      id: 8,
+      id: 2,
       title: "How sustainable hydropower can promote biodiversity",
       category: "Hydropower",
       date: "November 16, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image4-840x473.jpg",
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image9-1290x725.jpg",
+      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
       type: "image"
     },
     {
@@ -212,7 +176,7 @@ const BlogPage = () => {
       title: "Rising prices: the time for solar is now!",
       category: "Green Power",
       date: "November 10, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image9-1290x725.jpg", 
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -221,7 +185,7 @@ const BlogPage = () => {
       title: "Understanding the current solar tariffs",
       category: "Green Power",
       date: "November 10, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image7-1024x1024.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -230,7 +194,7 @@ const BlogPage = () => {
       title: "Is your smart home ready for summer?",
       category: "Green Power",
       date: "November 10, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image7-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image6-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -239,7 +203,7 @@ const BlogPage = () => {
       title: "Is solar worth it? Find out this summer!",
       category: "Green Power",
       date: "November 10, 2022",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image9-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -248,7 +212,7 @@ const BlogPage = () => {
       title: "How many solar panels do you need?",
       category: "Energy",
       date: "April 12, 2020",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2020/04/post-image1-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
       type: "image"
     },
@@ -257,7 +221,7 @@ const BlogPage = () => {
       title: "What are the profits of solar energy?",
       category: "Energy",
       date: "April 12, 2020",
-      image: blog1,
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
       type: "image"
     },
@@ -266,7 +230,7 @@ const BlogPage = () => {
       title: "Tips to reduce your home's energy use",
       category: "Energy",
       date: "April 12, 2020",
-      image: blog2,
+      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
       type: "image"
     },
@@ -275,7 +239,7 @@ const BlogPage = () => {
       title: "Harnessing the power of solar panels",
       category: "News",
       date: "April 11, 2020",
-      image: blog3,
+      image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb1-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -284,7 +248,7 @@ const BlogPage = () => {
       title: "Solar power is making renewable energy",
       category: "News",
       date: "April 10, 2020",
-      image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image6-1290x725.jpg",
+      image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb2-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -293,16 +257,7 @@ const BlogPage = () => {
       title: "The environmental impact of wind turbines",
       category: "News",
       date: "April 9, 2020",
-      image: plantImg,
-      excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
-    },
-    {
-      id: 24,
-      title: "Innovations in wind energy",
-      category: "News",
-      date: "April 9, 2020",
-      image: windmillImg,
+      image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb3-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     },
@@ -311,11 +266,43 @@ const BlogPage = () => {
       title: "Which energy is the better investment?",
       category: "News",
       date: "April 8, 2020",
-      image: workersImg,
+      image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb4-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "image"
     }
   ];
+
+const BlogPage = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+  const [galleryIndexes, setGalleryIndexes] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 8;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleGalleryPrev = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === 0 || prev[postId] === undefined) ? totalImages - 1 : prev[postId] - 1
+    }));
+  };
+
+  const handleGalleryNext = (e, postId, totalImages) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setGalleryIndexes(prev => ({
+      ...prev,
+      [postId]: (prev[postId] === undefined || prev[postId] === totalImages - 1) ? 0 : prev[postId] + 1
+    }));
+  };
+
+  
 
   const filteredPosts = allPosts.filter(post => {
     const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
@@ -381,7 +368,9 @@ const BlogPage = () => {
                                 ></iframe>
                               ) : (
                                 <>
-                                  <img src={post.image} alt={post.title} className="post-featured-img" />
+                                  <Link to={`/blog-post-${post.id}`}>
+                                    <img src={post.image} alt={post.title} className="post-featured-img" />
+                                  </Link>
                                   <div className="video-play-btn" onClick={() => setPlayingVideoId(post.id)}>
                                     <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
                                       <path d="M8 5v14l11-7z" />
@@ -392,7 +381,9 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'gallery-dark' ? (
                             <div className="post-image-wrapper gallery-post dark-nav">
-                              <img src={post.image} alt={post.title} className="post-featured-img" />
+                              <Link to={`/blog-post-${post.id}`} state={{ imageIndex: 0 }}>
+                                <img src={post.image} alt={post.title} className="post-featured-img" />
+                              </Link>
                               <div className="gallery-dark-control">
                                 <button className="dark-nav-prev">
                                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -419,7 +410,9 @@ const BlogPage = () => {
                             </div>
                           ) : post.type === 'gallery' ? (
                             <div className="post-image-wrapper gallery-post">
-                              <img src={post.images[galleryIndexes[post.id] || 0]} alt={post.title} className="post-featured-img" />
+                              <Link to={`/blog-post-${post.id}`} state={{ imageIndex: galleryIndexes[post.id] || 0 }}>
+                                <img src={post.images[galleryIndexes[post.id] || 0]} alt={post.title} className="post-featured-img" />
+                              </Link>
                               <div className="gallery-nav-btns">
                                 <button className="gallery-nav-btn prev" onClick={(e) => handleGalleryPrev(e, post.id, post.images.length)}>
                                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
