@@ -128,6 +128,39 @@ const Navbar = () => {
         </div>
 
         <div className="drawer-content">
+
+          {/* Main Pages */}
+          <ul className="drawer-nav-links">
+            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+            <li><Link to="/about-us" onClick={toggleMenu}>About Us</Link></li>
+            <li><Link to="/products" onClick={toggleMenu}>Products</Link></li>
+            <li><Link to="/why-savex" onClick={toggleMenu}>Why SaveX</Link></li>
+            <li><Link to="/services" onClick={toggleMenu}>Services</Link></li>
+            <li><Link to="/manufacturing" onClick={toggleMenu}>Manufacturing & Quality</Link></li>
+            <li><Link to="/our-team" onClick={toggleMenu}>Our Team</Link></li>
+            <li><Link to="/blog" onClick={toggleMenu}>Blog</Link></li>
+            <li><Link to="/contact" onClick={toggleMenu}>Contact Us</Link></li>
+          </ul>
+
+          <div className="drawer-divider"></div>
+
+          {/* Blog Posts */}
+          <p className="drawer-section-label">Latest Articles</p>
+          <ul className="drawer-nav-links drawer-blog-links">
+            <li><Link to="/blog-post/18" onClick={toggleMenu}>How many solar panels do you need?</Link></li>
+            <li><Link to="/blog-post/19" onClick={toggleMenu}>What are the profits of solar energy?</Link></li>
+            <li><Link to="/blog-post/20" onClick={toggleMenu}>Tips to reduce your home's energy use</Link></li>
+          </ul>
+
+          <div className="drawer-divider"></div>
+
+          {/* Request a Quote CTA */}
+          <Link to="/contact" className="drawer-quote-btn" onClick={toggleMenu}>
+            Request a Quote
+          </Link>
+
+          <div className="drawer-divider"></div>
+
           <div className="drawer-socials">
             <a href="#" className="drawer-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

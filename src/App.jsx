@@ -53,7 +53,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const hideGlobalSections = location.pathname === '/services' || location.pathname === '/our-team' || location.pathname === '/why-savex' || location.pathname.startsWith('/blog-post/');
+  const hideGlobalSections = location.pathname === '/services' || location.pathname === '/our-team' || location.pathname === '/why-savex' || location.pathname.startsWith('/blog-post/') || ['/blog', '/blog/'].includes(location.pathname);
 
   return (
     <div className="app-wrapper">

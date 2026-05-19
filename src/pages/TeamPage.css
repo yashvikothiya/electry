@@ -181,37 +181,39 @@
 
 /* Blog Section */
 .team-blog-section {
-  padding: 100px 0 150px 0;
-  background-color: var(--bg-light);
+  padding: 100px 0 100px 0;
+  background-color: #E7F0E9;
 }
 
 .blog-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 65px;
 }
 
 .blog-label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: #10271D;
   letter-spacing: 2px;
-  opacity: 0.6;
+  text-transform: uppercase;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  opacity: 0.8;
 }
 
 .blog-heading {
-  font-family: 'Stolzl', sans-serif;
-  font-size: 38px;
+  font-family: var(--font-heading);
+  font-size: 54px;
   font-weight: 800;
   color: #10271D;
-  margin-top: 10px;
+  margin: 0;
 }
 
 .blog-carousel-wrapper {
   width: 100%;
   overflow: hidden;
   position: relative;
+  padding-bottom: 100px;
 }
 
 .blog-carousel {
@@ -225,97 +227,99 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-top: 0;
-  background-color: var(--white);
-  padding: 80px 70px; /* Even larger internal padding */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.blog-image-wrapper {
+  width: 100%;
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+  overflow: hidden;
+  margin-bottom: 25px;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.blog-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-img {
+  transform: scale(1.05);
 }
 
 .blog-info {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  padding: 0 10px;
 }
 
 .blog-meta {
-  font-size: 15px; /* Larger meta text */
+  font-size: 13px;
   font-weight: 700;
-  color: #10271D;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
 }
 
-.blog-title {
+.meta-category {
+  color: #10271D;
+  font-weight: 700;
+}
+
+.meta-divider {
+  color: #98A2B3;
+}
+
+.meta-date {
+  color: #667085;
+  font-weight: 500;
+}
+
+.team-blog-title {
   font-family: var(--font-main);
-  font-size: 38px; /* Bigger titles */
+  font-size: 24px;
   font-weight: 800;
   color: #10271D;
-  line-height: 1.1;
-  margin-bottom: 30px;
+  line-height: 1.35;
+  margin: 0;
 }
 
-.blog-summary {
-  font-size: 18px; /* Larger summary text */
+.team-blog-title a {
   color: #10271D;
-  opacity: 0.7;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.blog-arrow {
-  margin-top: auto;
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(16, 39, 29, 0.2);
+.team-blog-title a:hover {
+  color: var(--brand-red);
+}
+
+/* Custom Cursor Follower */
+.custom-cursor-follower {
+  width: 60px;
+  height: 60px;
+  background-color: #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #10271D;
-  transition: all 0.3s ease;
-}
-
-.blog-card:hover .blog-arrow {
-  background-color: #10271D;
-  color: var(--white);
-  border-color: #10271D;
-}
-
-/* Carousel Nav Buttons */
-.carousel-nav {
-  position: absolute;
-  top: 175px; /* Middle of the image */
-  right: 0;
-  transform: translateY(-50%) translateX(50%); /* Center on the right edge of the card */
-  display: flex;
-  background-color: #000;
-  border-radius: 50px;
-  padding: 15px 25px;
-  gap: 20px;
-  z-index: 10;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.nav-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  transition: opacity 0.3s ease;
-}
-
-.nav-btn:hover {
-  opacity: 0.5;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  transition: transform 0.05s ease-out;
 }
 
 @media (max-width: 1024px) {
   .blog-heading {
-    font-size: 48px;
+    font-size: 44px;
   }
   .blog-card {
     flex: 0 0 calc(50% - 15px);
@@ -326,7 +330,7 @@
   .blog-card {
     flex: 0 0 100%;
   }
-  .blog-title {
-    font-size: 26px;
+  .team-blog-title {
+    font-size: 20px;
   }
 }

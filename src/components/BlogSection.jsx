@@ -10,21 +10,21 @@ const BlogSection = () => {
       date: "April 12, 2020",
       title: "How many solar panels do you need?",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt....",
-      link: "/blog-post-1"
+      link: "/blog-post/18"
     },
     {
       category: "ENERGY",
       date: "April 12, 2020",
       title: "What are the profits of solar energy?",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt....",
-      link: "/blog-post-2"
+      link: "/blog-post/19"
     },
     {
       category: "ENERGY",
       date: "April 12, 2020",
       title: "Tips to reduce your home's energy use",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt....",
-      link: "/blog-post-3"
+      link: "/blog-post/20"
     }
   ];
 

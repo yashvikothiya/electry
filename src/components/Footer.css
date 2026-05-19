@@ -197,3 +197,62 @@
     text-align: center;
   }
 }
+
+/* Soleil Footer Styles */
+.footer.is-soleil {
+  background-color: #0c1911; /* Extremely dark forest green */
+}
+
+.footer.is-soleil .footer-top-line {
+  display: none; /* Hide top line as logo is at the very top */
+}
+
+.footer.is-soleil .footer-content {
+  padding-top: 80px; /* Add top padding to balance layout */
+}
+
+.soleil-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.soleil-logo-text {
+  font-family: var(--font-main, sans-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.soleil-logo-svg {
+  display: block;
+}
+
+.footer.is-soleil .email-wrap {
+  margin: 10px 0;
+}
+
+.footer.is-soleil .email {
+  color: #ffffff;
+  text-decoration: underline !important;
+  text-underline-offset: 6px;
+  opacity: 0.9;
+  font-weight: 600;
+  font-size: 18px;
+  transition: opacity 0.3s ease;
+}
+
+.footer.is-soleil .email:hover {
+  opacity: 1;
+}
+
+.footer.is-soleil .social-icon {
+  background-color: #172c1f; /* Circular icon container in dark olive green */
+}
+
+.footer.is-soleil .social-icon:hover {
+  background-color: #ffffff;
+  color: #0c1911;
+}
+

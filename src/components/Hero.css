@@ -6,12 +6,12 @@
   align-items: center;
   overflow: hidden;
   background-color: var(--bg-light);
-  padding: 30px 0 150px;
+  padding: 80px 0 150px;
 }
 
 .hero-bg-text {
   position: absolute;
-  top: 35%;
+  top: 26%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-heading);
@@ -31,14 +31,14 @@
   text-align: center;
 }
 
-.hero-title,
-.hero-title span {
+.hero .hero-title,
+.hero .hero-title span {
   font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif !important;
   font-weight: 800 !important;
   font-size: clamp(70px, 11vw, 175px) !important;
 }
 
-.hero-title {
+.hero .hero-title {
   line-height: 0.8;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-.hero-title .green-text:last-child {
+.hero .hero-title .green-text:last-child {
   font-size: 1.1em;
 }
 

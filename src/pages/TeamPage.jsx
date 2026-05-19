@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './TeamPage.css';
 
@@ -35,41 +35,44 @@ const teamMembers = [
 
 const blogPosts = [
   {
-    id: 1,
-    category: 'ENERGY',
-    date: 'April 12, 2020',
-    title: 'How many solar panels do you need?',
-    summary: 'Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Curabitur vel dui et nisl.',
-    link: '/blog-post-1'
+    id: 9,
+    category: 'GREEN POWER',
+    date: 'November 10, 2022',
+    title: 'Rising prices: the time for solar is now!',
+    image: 'https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg',
+    link: '/blog-post/9'
   },
   {
-    id: 2,
-    category: 'ENERGY',
-    date: 'April 12, 2020',
-    title: 'What are the profits of solar energy?',
-    summary: 'Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Pellentesque habitant morbi.',
-    link: '#'
+    id: 15,
+    category: 'GREEN POWER',
+    date: 'November 10, 2022',
+    title: 'Understanding the current solar tariffs',
+    image: 'https://savexelectricals.com/wp-content/uploads/2022/11/post-image7-1024x1024.jpg',
+    link: '/blog-post/15'
   },
   {
-    id: 3,
-    category: 'ENERGY',
-    date: 'April 12, 2020',
-    title: 'Tips to reduce your home\'s energy use',
-    summary: 'Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Mauris placerat eleifend.',
-    link: '#'
+    id: 16,
+    category: 'GREEN POWER',
+    date: 'November 10, 2022',
+    title: 'Is your smart home ready for summer?',
+    image: 'https://savexelectricals.com/wp-content/uploads/2022/11/post-image6-1290x725.jpg',
+    link: '/blog-post/16'
   },
   {
-    id: 4,
-    category: 'DESIGN',
-    date: 'May 05, 2020',
-    title: 'The Future of Smart Lighting',
-    summary: 'Exploration of how smart technology is changing the way we interact with light in our homes.',
-    link: '#'
+    id: 17,
+    category: 'GREEN POWER',
+    date: 'November 10, 2022',
+    title: 'Is solar worth it? Find out this summer!',
+    image: 'https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg',
+    link: '/blog-post/17'
   }
 ];
 
 const TeamPage = () => {
   const [blogIndex, setBlogIndex] = useState(0);
+  const [followerPos, setFollowerPos] = useState({ x: 0, y: 0 });
+  const [isHoveringCarousel, setIsHoveringCarousel] = useState(false);
+  const carouselWrapperRef = useRef(null);
 
   const nextBlog = () => {
     setBlogIndex((prev) => (prev + 1) % blogPosts.length);
@@ -77,6 +80,33 @@ const TeamPage = () => {
 
   const prevBlog = () => {
     setBlogIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
+  };
+
+  const handleMouseMove = (e) => {
+    setFollowerPos({
+      x: e.clientX,
+      y: e.clientY
+    });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHoveringCarousel(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHoveringCarousel(false);
+  };
+
+  const handleCarouselClick = (e) => {
+    if (!carouselWrapperRef.current) return;
+    const rect = carouselWrapperRef.current.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const midX = rect.width / 2;
+    if (clickX < midX) {
+      prevBlog();
+    } else {
+      nextBlog();
+    }
   };
 
   const getVisiblePosts = () => {
@@ -130,43 +160,59 @@ const TeamPage = () => {
       <section className="team-blog-section">
         <div className="container">
           <div className="blog-header">
-            <span className="blog-label">READ ARTICLES</span>
-            <h2 className="blog-heading">Latest from the Blog</h2>
+            <span className="blog-label">FROM THE BLOG</span>
+            <h2 className="blog-heading">Latest News</h2>
           </div>
 
-          <div className="blog-carousel-wrapper">
+          <div 
+            className="blog-carousel-wrapper"
+            ref={carouselWrapperRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleCarouselClick}
+            style={{ cursor: isHoveringCarousel ? 'none' : 'default' }}
+          >
             <div className="blog-carousel">
               {getVisiblePosts().map((post, idx) => (
                 <div key={`${post.id}-${idx}`} className="blog-card">
+                  <div className="blog-image-wrapper">
+                    <img src={post.image} alt={post.title} className="blog-img" />
+                  </div>
                   <div className="blog-info">
                     <div className="blog-meta">
-                      {post.category} • {post.date}
+                      <span className="meta-category">{post.category}</span>
+                      <span className="meta-divider">•</span>
+                      <span className="meta-date">{post.date}</span>
                     </div>
-                    <h3 className="blog-title">{post.title}</h3>
-                    <p className="blog-summary">{post.summary}</p>
-                    <Link to={post.link} className="blog-arrow">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                      </svg>
-                    </Link>
+                    <h3 className="team-blog-title">
+                      <Link to={post.link} onClick={(e) => e.stopPropagation()}>{post.title}</Link>
+                    </h3>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="carousel-nav">
-              <button className="nav-btn" onClick={prevBlog}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M15 18l-6-6 6-6" />
+            {isHoveringCarousel && (
+              <div 
+                className="custom-cursor-follower"
+                style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  transform: `translate3d(${followerPos.x - 30}px, ${followerPos.y - 30}px, 0)`,
+                  pointerEvents: 'none',
+                  zIndex: 9999
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                  <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
-              </button>
-              <button className="nav-btn" onClick={nextBlog}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                  <path d="M9 18l6-6-6-6" />
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
-              </button>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
