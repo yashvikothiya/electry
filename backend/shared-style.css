@@ -1,4 +1,6 @@
 /* shared-style.css - Common admin panel styles */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
 :root {
     --brand-green: #10271D;
     --brand-red: #E31E24;
@@ -12,8 +14,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
+html, body, input, button, textarea, select, table, th, td, a, p, span, label {
     font-family: 'Outfit', sans-serif;
+}
+
+body {
     background-color: var(--mint-bg);
     display: flex;
     min-height: 100vh;

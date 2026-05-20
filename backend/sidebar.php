@@ -26,6 +26,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <li class="nav-item <?php echo $currentPage === 'manage-inquiries.php' ? 'active' : ''; ?>">
             <a href="manage-inquiries.php"><i class="fa-solid fa-envelope-open-text"></i> Contact Mail</a>
         </li>
+        <li class="nav-item <?php echo $currentPage === 'manage-comments.php' ? 'active' : ''; ?>">
+            <a href="manage-comments.php"><i class="fa-solid fa-comments"></i> Blog Comments</a>
+        </li>
     </ul>
     <div class="sidebar-footer">
         <div class="admin-info">

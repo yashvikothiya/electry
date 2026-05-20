@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { allPosts } from './BlogPage';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import batteryStorageImg from '../assets/battery_storage.png';
 import blog1 from '../assets/blog1.png';
-import windmillImg from '../assets/windmill.png';
 import blueHouseImg from '../assets/blue_house.png';
 import windfarmHillsImg from '../assets/windfarm_hills.png';
 import windfarmSunsetImg from '../assets/windfarm_sunset.png';
+import windmillImg from '../assets/windmill.png';
 import workersImg from '../assets/workers.png';
+import { allPosts } from './BlogPage';
 import './BlogPostPage.css';
 
 const BlogPostPage = () => {
   const { id } = useParams();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const API_BASE_URL = 'http://localhost/yashvi/electry/backend';
+  const [comments, setComments] = useState([]);
+  const [commentName, setCommentName] = useState('');
+  const [commentEmail, setCommentEmail] = useState('');
+  const [commentText, setCommentText] = useState('');
+  const [commentStatus, setCommentStatus] = useState({ type: '', text: '' });
 
   const galleryImages = [
     blog1, windmillImg, blueHouseImg,
@@ -41,6 +47,61 @@ const BlogPostPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    fetchComments();
+  }, [postId]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/get-comments.php?post_id=${postId}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setComments(data);
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to load comments', err);
+    }
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!commentName || !commentEmail || !commentText) {
+      setCommentStatus({ type: 'error', text: 'Please fill in your name, email, and comment.' });
+      return;
+    }
+
+    setCommentStatus({ type: '', text: '' });
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/add-comment.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          post_id: postId,
+          name: commentName,
+          email: commentEmail,
+          comment: commentText,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setCommentStatus({ type: 'success', text: data.message });
+        setCommentName('');
+        setCommentEmail('');
+        setCommentText('');
+        fetchComments();
+      } else {
+        setCommentStatus({ type: 'error', text: data.error || 'Unable to submit your comment.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setCommentStatus({ type: 'error', text: 'Network error. Please try again.' });
+    }
+  };
 
   // Get prev/next posts for navigation
   const currentIndex = allPosts.findIndex(p => p.id === post.id);
@@ -70,7 +131,7 @@ const BlogPostPage = () => {
             <span className="meta-dot">•</span>
             <span className="meta-text">{post.date}</span>
             <span className="meta-dot">•</span>
-            <span className="meta-text">0 Comments</span>
+            <span className="meta-text">{comments.length} Comments</span>
           </div>
         </div>
       </section>
@@ -182,13 +243,30 @@ const BlogPostPage = () => {
               {/* Leave a Comment Section */}
               <div className="leave-comment-section">
                 <h2 className="comment-section-title">Leave a comment</h2>
-                <form className="comment-form">
+                <form className="comment-form" onSubmit={handleCommentSubmit}>
+                  {commentStatus.text && (
+                    <div className={`status-message-banner ${commentStatus.type}`}>
+                      {commentStatus.text}
+                    </div>
+                  )}
                   <div className="form-row">
                     <div className="form-group">
-                      <input type="text" placeholder="Your Name *" required />
+                      <input
+                        type="text"
+                        placeholder="Your Name *"
+                        value={commentName}
+                        onChange={(e) => setCommentName(e.target.value)}
+                        required
+                      />
                     </div>
                     <div className="form-group">
-                      <input type="email" placeholder="Your E-mail *" required />
+                      <input
+                        type="email"
+                        placeholder="Your E-mail *"
+                        value={commentEmail}
+                        onChange={(e) => setCommentEmail(e.target.value)}
+                        required
+                      />
                     </div>
                   </div>
                   <div className="form-checkbox">
@@ -196,7 +274,12 @@ const BlogPostPage = () => {
                     <label htmlFor="save-info">Save my name, email, and website in this browser for the next time I comment.</label>
                   </div>
                   <div className="form-group textarea-group">
-                    <textarea placeholder="Your comment *" required></textarea>
+                    <textarea
+                      placeholder="Your comment *"
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      required
+                    ></textarea>
                   </div>
                   <div className="form-checkbox">
                     <input type="checkbox" id="data-agree" required />

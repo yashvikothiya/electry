@@ -32,6 +32,8 @@ try {
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES   => false,
     ]);
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS blog_comments (id INT AUTO_INCREMENT PRIMARY KEY, post_id INT NOT NULL, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, comment TEXT NOT NULL, status VARCHAR(20) DEFAULT 'new', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 } catch (PDOException $e) {
     // If standard request, return JSON error
     if (strpos($_SERVER['REQUEST_URI'], '/api/') !== false) {

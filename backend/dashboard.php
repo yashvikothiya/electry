@@ -8,12 +8,14 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS categories (id INT AUTO_INCREMENT PRIMARY
 $pdo->exec("CREATE TABLE IF NOT EXISTS products (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, category_id INT, description TEXT, wattage VARCHAR(50), voltage VARCHAR(50), price DECIMAL(10,2), stock_status VARCHAR(20) DEFAULT 'in_stock', image_url VARCHAR(500), status VARCHAR(20) DEFAULT 'active', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 $pdo->exec("CREATE TABLE IF NOT EXISTS blog_posts (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, category VARCHAR(50) DEFAULT 'GREEN POWER', post_date VARCHAR(50) NOT NULL, image_url VARCHAR(255) NOT NULL, slug VARCHAR(100) NOT NULL UNIQUE, content TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 $pdo->exec("CREATE TABLE IF NOT EXISTS contact_inquiries (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, phone VARCHAR(20), subject VARCHAR(255), message TEXT NOT NULL, status VARCHAR(20) DEFAULT 'unread', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
+$pdo->exec("CREATE TABLE IF NOT EXISTS blog_comments (id INT AUTO_INCREMENT PRIMARY KEY, post_id INT NOT NULL, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, comment TEXT NOT NULL, status VARCHAR(20) DEFAULT 'new', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 
 // Stats
 $totalPosts     = $pdo->query("SELECT COUNT(*) FROM blog_posts")->fetchColumn();
 $totalProducts  = $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
 $totalCats      = $pdo->query("SELECT COUNT(*) FROM categories")->fetchColumn();
 $totalInquiries = $pdo->query("SELECT COUNT(*) FROM contact_inquiries")->fetchColumn();
+$totalComments  = $pdo->query("SELECT COUNT(*) FROM blog_comments")->fetchColumn();
 $totalUnread    = $pdo->query("SELECT COUNT(*) FROM contact_inquiries WHERE status='unread'")->fetchColumn();
 $totalAdmins    = $pdo->query("SELECT COUNT(*) FROM admins")->fetchColumn();
 
@@ -100,6 +102,10 @@ $recentInquiries = $pdo->query("SELECT * FROM contact_inquiries ORDER BY id DESC
         <a href="manage-inquiries.php" class="quick-link-card">
             <div class="ql-icon" style="background:#FDF2F2;color:var(--brand-red);"><i class="fa-solid fa-envelope-open"></i></div>
             <div class="ql-text"><div class="ql-title">View Inbox</div><div class="ql-sub"><?= $totalUnread ?> unread messages</div></div>
+        </a>
+        <a href="manage-comments.php" class="quick-link-card">
+            <div class="ql-icon" style="background:#F4F8FF;color:#1D4ED8;"><i class="fa-solid fa-comments"></i></div>
+            <div class="ql-text"><div class="ql-title">Blog Comments</div><div class="ql-sub"><?= $totalComments ?> total comments</div></div>
         </a>
     </div>
 
