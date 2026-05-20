@@ -130,8 +130,8 @@ const BlogPostPage = () => {
               </p>
 
               <div className="post-tags-container">
-                {['company', 'energy', 'green', 'panels', 'power', 'solar'].map(tag => (
-                  <span className="post-tag" key={tag}>{tag}</span>
+                {(post.tags || []).map(tag => (
+                  <Link className="post-tag" key={tag} to={`/tag/${tag}`}>{tag}</Link>
                 ))}
               </div>
 

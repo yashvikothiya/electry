@@ -21,7 +21,8 @@ export const allPosts = [
       date: "November 17, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["energy", "power", "commercial"]
     },
     {
       id: 992,
@@ -31,7 +32,8 @@ export const allPosts = [
       image: batteryStorageImg,
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
       type: "video",
-      videoUrl: "https://www.youtube.com/embed/SQpbTTGe_gk?autoplay=1"
+      videoUrl: "https://www.youtube.com/embed/SQpbTTGe_gk?autoplay=1",
+      tags: ["solar", "panels", "green"]
     },
     {
       id: 993,
@@ -39,7 +41,8 @@ export const allPosts = [
       category: "Technologies",
       date: "November 17, 2022",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "audio"
+      type: "audio",
+      tags: ["solar", "energy", "company"]
     },
     {
       id: 994,
@@ -52,7 +55,8 @@ export const allPosts = [
         "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image6.jpg"
       ],
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "gallery"
+      type: "gallery",
+      tags: ["solar", "company", "power"]
     },
     {
       id: 995,
@@ -61,7 +65,8 @@ export const allPosts = [
       date: "November 17, 2022",
       quote: "Dipiscing elit, sed do eiusmod tempor incidunt ut labore adipiscing et dolore magna minim totam rem iste natus sit aliqua.",
       footerText: "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. nemo enim ipsam voluptatem, quia voluptas sit.",
-      type: "quote"
+      type: "quote",
+      tags: ["company", "green"]
     },
     {
       id: 996,
@@ -70,7 +75,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image5-840x473.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "panels", "hydro"]
     },
     {
       id: 10,
@@ -79,7 +85,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image3-840x473.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "power", "green"]
     },
     {
       id: 11,
@@ -88,7 +95,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/portfolio-image2-840x473.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "energy", "power"]
     },
     {
       id: 13,
@@ -97,7 +105,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: windfarmHillsImg,
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "company", "panels"]
     },
     {
       id: 1,
@@ -106,7 +115,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "commercial", "power"]
     },
     {
       id: 12,
@@ -115,7 +125,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2020/04/post-image2-1024x683.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "energy", "panels"]
     },
     {
       id: 5,
@@ -124,7 +135,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image9-1024x683.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "company", "power"]
     },
     {
       id: 14,
@@ -133,7 +145,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2020/04/service-image8-1024x683.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "commercial", "panels"]
     },
     {
       id: 6,
@@ -142,7 +155,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/typography-image2-1024x683.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "energy", "power"]
     },
     {
       id: 7,
@@ -151,7 +165,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image11-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["hydro", "green", "power"]
     },
     {
       id: 8,
@@ -160,7 +175,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image10-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["hydro", "power", "green"]
     },
     {
       id: 2,
@@ -169,7 +185,8 @@ export const allPosts = [
       date: "November 16, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image9-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing...",
-      type: "image"
+      type: "image",
+      tags: ["hydro", "green", "company"]
     },
     {
       id: 9,
@@ -178,7 +195,8 @@ export const allPosts = [
       date: "November 10, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image8-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "power", "green"]
     },
     {
       id: 15,
@@ -187,7 +205,8 @@ export const allPosts = [
       date: "November 10, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image7-1024x1024.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "power", "panels"]
     },
     {
       id: 16,
@@ -196,7 +215,8 @@ export const allPosts = [
       date: "November 10, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image6-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["power", "energy", "company"]
     },
     {
       id: 17,
@@ -205,7 +225,8 @@ export const allPosts = [
       date: "November 10, 2022",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image5-1290x725.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "green", "power"]
     },
     {
       id: 18,
@@ -214,7 +235,8 @@ export const allPosts = [
       date: "April 12, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2020/04/post-image1-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
-      type: "image"
+      type: "image",
+      tags: ["panels", "solar", "energy"]
     },
     {
       id: 19,
@@ -223,7 +245,8 @@ export const allPosts = [
       date: "April 12, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image3-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
-      type: "image"
+      type: "image",
+      tags: ["solar", "energy"]
     },
     {
       id: 20,
@@ -232,7 +255,8 @@ export const allPosts = [
       date: "April 12, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2022/11/post-image4-1290x725.jpg",
       excerpt: "Quroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing elit,...",
-      type: "image"
+      type: "image",
+      tags: ["energy", "power", "green"]
     },
     {
       id: 21,
@@ -241,7 +265,8 @@ export const allPosts = [
       date: "April 11, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb1-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "panels", "power"]
     },
     {
       id: 22,
@@ -250,7 +275,8 @@ export const allPosts = [
       date: "April 10, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb2-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["solar", "power", "green"]
     },
     {
       id: 23,
@@ -259,7 +285,8 @@ export const allPosts = [
       date: "April 9, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb3-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["green", "power", "company"]
     },
     {
       id: 25,
@@ -268,7 +295,8 @@ export const allPosts = [
       date: "April 8, 2020",
       image: "https://savexelectricals.com/wp-content/uploads/2024/06/post-vb4-1024x765.jpg",
       excerpt: "Q uroin faucibus nec mauris a sodales, sed elementum mi tincidunt. Sed eget viverra egestas nisi in consequat. Fusce sodales augue a eiusm od tempor incididunt ut labore. Consectetur adipiscing..",
-      type: "image"
+      type: "image",
+      tags: ["energy", "power"]
     }
   ];
 
@@ -638,7 +666,7 @@ const BlogPage = () => {
                   <h3 className="widget-title">Tags</h3>
                   <div className="tags-cloud">
                     {['commercial', 'company', 'energy', 'green', 'hydro', 'panels', 'power', 'solar'].map(tag => (
-                      <span key={tag} className="tag-item">{tag}</span>
+                      <Link key={tag} to={`/tag/${tag}`} className="tag-item">{tag}</Link>
                     ))}
                   </div>
                 </div>

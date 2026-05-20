@@ -110,61 +110,33 @@ const Navbar = () => {
         </div>
 
         <div className="drawer-content">
-
-          {/* Main Pages */}
-          <ul className="drawer-nav-links">
-            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-            <li><Link to="/about-us" onClick={toggleMenu}>About Us</Link></li>
-            <li><Link to="/products" onClick={toggleMenu}>Products</Link></li>
-            <li><Link to="/why-savex" onClick={toggleMenu}>Why SaveX</Link></li>
-            <li><Link to="/services" onClick={toggleMenu}>Services</Link></li>
-            <li><Link to="/manufacturing" onClick={toggleMenu}>Manufacturing & Quality</Link></li>
-            <li><Link to="/our-team" onClick={toggleMenu}>Our Team</Link></li>
-            <li><Link to="/blog" onClick={toggleMenu}>Blog</Link></li>
-            <li><Link to="/contact" onClick={toggleMenu}>Contact Us</Link></li>
-          </ul>
-
-          <div className="drawer-divider"></div>
-
-          {/* Blog Posts */}
-          <p className="drawer-section-label">Latest Articles</p>
-          <ul className="drawer-nav-links drawer-blog-links">
-            <li><Link to="/blog-post/18" onClick={toggleMenu}>How many solar panels do you need?</Link></li>
-            <li><Link to="/blog-post/19" onClick={toggleMenu}>What are the profits of solar energy?</Link></li>
-            <li><Link to="/blog-post/20" onClick={toggleMenu}>Tips to reduce your home's energy use</Link></li>
-          </ul>
-
-          <div className="drawer-divider"></div>
-
-          {/* Request a Quote CTA */}
-          <Link to="/contact" className="drawer-quote-btn" onClick={toggleMenu}>
-            Request a Quote
-          </Link>
-
-          <div className="drawer-divider"></div>
-
-          <div className="drawer-socials">
-            <a href="#" className="drawer-social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7h-2.54v-2.9h2.54v-2.21c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7c4.78-.75 8.44-4.9 8.44-9.9 0-5.53-4.5-10.02-10-10.02z"/>
-              </svg>
-              <span>Facebook</span>
-            </a>
-            <a href="#" className="drawer-social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-              <span>Instagram</span>
-            </a>
+          <div className="drawer-socials-wrapper">
+            <div className="drawer-socials">
+              <a href="#" className="drawer-social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Facebook</span>
+              </a>
+              <a href="#" className="drawer-social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </div>
           </div>
 
-          <div className="drawer-divider"></div>
-
-          <div className="drawer-contact">
-            <a href="tel:+917265011113" className="drawer-contact-item phone">+91 72650 11113</a>
-            <a href="mailto:sales@savexelectricals.com" className="drawer-contact-item email">sales@savexelectricals.com</a>
+          <div className="drawer-bottom-group">
+            <div className="drawer-divider"></div>
+            <div className="drawer-contact">
+              <a href="tel:+917265011113" className="drawer-contact-item phone">+91 72650 11113</a>
+              <a href="mailto:sales@savexelectricals.com" className="drawer-contact-item email">sales@savexelectricals.com</a>
+            </div>
           </div>
         </div>
       </div>

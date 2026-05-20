@@ -238,7 +238,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  background-color: #F5F7F6;
+  background-color: #E3EAE6;
   border: none;
   display: flex;
   align-items: center;
@@ -249,7 +249,7 @@
 }
 
 .drawer-close:hover {
-  background-color: #E8EBE9;
+  background-color: #D6DDD9;
   transform: rotate(90deg);
 }
 
@@ -283,7 +283,7 @@
 }
 
 .drawer-social-link svg {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .drawer-divider {
@@ -293,11 +293,14 @@
   margin: 40px 0;
 }
 
+.drawer-bottom-group {
+  margin-top: auto;
+}
+
 .drawer-contact {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: auto;
 }
 
 .drawer-contact-item {

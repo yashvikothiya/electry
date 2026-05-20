@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './AboutPage.css';
 import factoryBg from '../assets/led_factory_background.png';
 import bulbImg from '../assets/bulb.png';
-import blog1 from '../assets/blog1.png';
-import blog2 from '../assets/blog2.png';
+import blog1 from '../assets/blue_house.png';
+import blog2 from '../assets/battery_storage.png';
 import blog3 from '../assets/blog3.png';
 
 
