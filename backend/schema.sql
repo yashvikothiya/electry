@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
 CREATE TABLE IF NOT EXISTS contact_inquiries (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    company VARCHAR(255),
     email VARCHAR(100) NOT NULL,
     phone VARCHAR(20),
     subject VARCHAR(255),

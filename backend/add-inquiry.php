@@ -22,6 +22,7 @@ if (!$input) {
 }
 
 $name = isset($input['name']) ? trim($input['name']) : '';
+$company = isset($input['company']) ? trim($input['company']) : '';
 $email = isset($input['email']) ? trim($input['email']) : '';
 $phone = isset($input['phone']) ? trim($input['phone']) : '';
 $subject = isset($input['subject']) ? trim($input['subject']) : '';
@@ -41,8 +42,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO contact_inquiries (name, email, phone, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, 'unread', NOW())");
-    $stmt->execute([$name, $email, $phone, $subject, $message]);
+    $stmt = $pdo->prepare("INSERT INTO contact_inquiries (name, company, email, phone, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, ?, 'unread', NOW())");
+    $stmt->execute([$name, $company, $email, $phone, $subject, $message]);
     
     echo json_encode(["success" => true, "message" => "Your inquiry has been submitted successfully."]);
 } catch (PDOException $e) {

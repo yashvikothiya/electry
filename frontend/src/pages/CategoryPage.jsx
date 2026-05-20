@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './CategoryPage.css';
 
 const CategoryPage = () => {
@@ -210,20 +210,14 @@ const CategoryPage = () => {
           <div className="category-posts-grid">
             {currentCategory.posts.map(post => (
               <div key={post.id} className={`category-post-card-wrap ${post.type}-type`}>
-                <Link to={`/blog-post-${post.id}`} className="category-post-card">
+                <Link to={`/blog-post/${post.id}`} className="category-post-card">
                   {renderPostMedia(post)}
-                  <div className="card-content">
-                    {post.type !== 'quote' && (
-                      <>
-                        <div className="card-meta">
-                          <span className="card-cat">{post.category.toUpperCase()}</span>
-                          <span className="card-sep">•</span>
-                          <span className="card-date">{post.date}</span>
-                        </div>
-                        <h3 className="card-title">{post.title}</h3>
-                      </>
-                    )}
+                  <div className="card-meta">
+                    <span className="card-cat">{post.category.toUpperCase()}</span>
+                    <span className="card-sep">•</span>
+                    <span className="card-date">{post.date}</span>
                   </div>
+                  <h3 className="card-title">{post.title}</h3>
                 </Link>
               </div>
             ))}

@@ -34,6 +34,20 @@ try {
     ]);
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS blog_comments (id INT AUTO_INCREMENT PRIMARY KEY, post_id INT NOT NULL, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, comment TEXT NOT NULL, status VARCHAR(20) DEFAULT 'new', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS contact_inquiries (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        company VARCHAR(255),
+        email VARCHAR(100) NOT NULL,
+        phone VARCHAR(20),
+        subject VARCHAR(255),
+        message TEXT NOT NULL,
+        status VARCHAR(20) DEFAULT 'unread',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB");
+
+    $pdo->exec("ALTER TABLE contact_inquiries ADD COLUMN IF NOT EXISTS company VARCHAR(255) AFTER name");
 } catch (PDOException $e) {
     // If standard request, return JSON error
     if (strpos($_SERVER['REQUEST_URI'], '/api/') !== false) {

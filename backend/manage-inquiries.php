@@ -27,7 +27,25 @@ if ($action === 'toggle_status' && isset($_GET['id'])) {
     }
 }
 
-// 2. DELETE Message
+// 2. View single inquiry
+$viewInquiry = null;
+if ($action === 'view' && isset($_GET['id'])) {
+    try {
+        $id = (int)$_GET['id'];
+        $stmtView = $pdo->prepare("SELECT * FROM contact_inquiries WHERE id = ?");
+        $stmtView->execute([$id]);
+        $viewInquiry = $stmtView->fetch();
+        if (!$viewInquiry) {
+            $error = 'Inquiry not found.';
+            $action = 'list';
+        }
+    } catch (PDOException $e) {
+        $error = 'Failed to load inquiry: ' . $e->getMessage();
+        $action = 'list';
+    }
+}
+
+// 3. DELETE Message
 if ($action === 'delete' && isset($_GET['id'])) {
     try {
         $id = (int)$_GET['id'];
@@ -272,7 +290,7 @@ try {
             display: flex;
             gap: 12px;
         }
-        .btn-status-act, .btn-del-act {
+        .btn-status-act, .btn-del-act, .btn-view-act {
             width: 38px;
             height: 38px;
             border-radius: 50%;
@@ -284,6 +302,14 @@ try {
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+        }
+        .btn-view-act {
+            background-color: #EFF6FF;
+            color: #1D4ED8;
+        }
+        .btn-view-act:hover {
+            background-color: #1D4ED8;
+            color: var(--white);
         }
         .btn-status-act {
             background-color: #E7F0E9;
@@ -302,30 +328,11 @@ try {
             color: var(--white);
         }
     </style>
+    <link rel="stylesheet" href="shared-style.css">
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <h1>SAVEX</h1>
-            <div class="logo-sub">LED Lighting Solution..</div>
-        </div>
-        <ul class="nav-list">
-            <li class="nav-item">
-                <a href="dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="manage-posts.php"><i class="fa-solid fa-newspaper"></i> Manage Posts</a>
-            </li>
-            <li class="nav-item active">
-                <a href="manage-inquiries.php"><i class="fa-solid fa-envelope-open-text"></i> Contact Mail</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-        </div>
-    </div>
+    <?php include 'sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -342,34 +349,58 @@ try {
         <?php endif; ?>
 
         <!-- Listing Table Panel -->
-        <div class="panel-card">
+        <div class="panel-card" style="margin-bottom:24px;">
             <div class="panel-header" style="border:none; margin-bottom:0; padding-bottom:0;">
                 <h3>Customer Messages</h3>
             </div>
+            <?php if ($viewInquiry): ?>
+                <div style="margin-top:20px; padding:24px; border:1px solid var(--border-light); border-radius:20px; background:#F8FBF7;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:20px;">
+                        <h4 style="margin:0; font-size:18px; color:var(--brand-green);">View Message</h4>
+                        <a href="manage-inquiries.php" style="font-size:14px; color:var(--brand-green); text-decoration:none; font-weight:700;">Back to inbox</a>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-bottom:18px;">
+                        <div><strong>Name:</strong><br><?php echo htmlspecialchars($viewInquiry['name']); ?></div>
+                        <div><strong>Company:</strong><br><?php echo htmlspecialchars($viewInquiry['company'] ?: '—'); ?></div>
+                        <div><strong>Email:</strong><br><?php echo htmlspecialchars($viewInquiry['email']); ?></div>
+                        <div><strong>Phone:</strong><br><?php echo htmlspecialchars($viewInquiry['phone'] ?: '—'); ?></div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <strong>Subject:</strong>
+                        <div style="margin-top:6px; color:var(--text-dark); font-weight:600;"><?php echo htmlspecialchars($viewInquiry['subject'] ?: 'No Subject'); ?></div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <strong>Message:</strong>
+                        <div class="inquiry-message" style="margin-top:10px; padding:18px; background:#FFFFFF; border:1px solid var(--border-light); border-radius:16px;"><?php echo nl2br(htmlspecialchars($viewInquiry['message'])); ?></div>
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:18px; font-size:14px; color:var(--text-muted);">
+                        <div><strong>Received:</strong> <?php echo date('M d, Y H:i A', strtotime($viewInquiry['created_at'])); ?></div>
+                        <div><strong>Status:</strong> <span class="badge <?php echo htmlspecialchars($viewInquiry['status']); ?>"><?php echo htmlspecialchars($viewInquiry['status']); ?></span></div>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <?php if (count($inquiries) > 0): ?>
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Sender & Contact</th>
-                            <th>Inquiry Subject & Message</th>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Message</th>
                             <th>Status</th>
                             <th>Received At</th>
-                            <th style="text-align:right;">Actions</th>
+                            <th style="text-align:right; min-width:150px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($inquiries as $inquiry): ?>
                             <tr>
-                                <td>
-                                    <div class="inquiry-sender"><?php echo htmlspecialchars($inquiry['name']); ?></div>
-                                    <div class="inquiry-contacts">
-                                        <div><i class="fa-solid fa-envelope" style="width:16px;"></i> <?php echo htmlspecialchars($inquiry['email']); ?></div>
-                                        <?php if (!empty($inquiry['phone'])): ?>
-                                            <div><i class="fa-solid fa-phone" style="width:16px;"></i> <?php echo htmlspecialchars($inquiry['phone']); ?></div>
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
+                                <td class="inquiry-sender"><?php echo htmlspecialchars($inquiry['name']); ?></td>
+                                <td><?php echo htmlspecialchars($inquiry['company'] ?: '—'); ?></td>
+                                <td><?php echo htmlspecialchars($inquiry['phone'] ?: '—'); ?></td>
+                                <td><?php echo htmlspecialchars($inquiry['email']); ?></td>
                                 <td>
                                     <div class="inquiry-subject"><?php echo htmlspecialchars($inquiry['subject'] ?: 'No Subject'); ?></div>
                                     <div class="inquiry-message"><?php echo htmlspecialchars($inquiry['message']); ?></div>
@@ -389,6 +420,9 @@ try {
                                 </td>
                                 <td>
                                     <div class="action-btns" style="justify-content:flex-end;">
+                                        <a href="manage-inquiries.php?action=view&id=<?php echo $inquiry['id']; ?>" class="btn-view-act" title="View Message">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
                                         <a href="manage-inquiries.php?action=toggle_status&id=<?php echo $inquiry['id']; ?>" class="btn-status-act" title="<?php echo $inquiry['status'] === 'unread' ? 'Mark as Read' : 'Mark as Unread'; ?>">
                                             <i class="fa-solid <?php echo $inquiry['status'] === 'unread' ? 'fa-envelope-open' : 'fa-envelope'; ?>"></i>
                                         </a>

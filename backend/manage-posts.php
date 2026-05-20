@@ -444,30 +444,11 @@ try {
             color: var(--white);
         }
     </style>
+    <link rel="stylesheet" href="shared-style.css">
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="sidebar-logo">
-            <h1>SAVEX</h1>
-            <div class="logo-sub">LED Lighting Solution..</div>
-        </div>
-        <ul class="nav-list">
-            <li class="nav-item">
-                <a href="dashboard.php"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-            </li>
-            <li class="nav-item active">
-                <a href="manage-posts.php"><i class="fa-solid fa-newspaper"></i> Manage Posts</a>
-            </li>
-            <li class="nav-item">
-                <a href="manage-inquiries.php"><i class="fa-solid fa-envelope-open-text"></i> Contact Mail</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            <a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-        </div>
-    </div>
+    <?php include 'sidebar.php'; ?>
 
     <!-- Main Content -->
     <div class="main-content">

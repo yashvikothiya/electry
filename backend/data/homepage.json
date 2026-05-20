@@ -1,0 +1,49 @@
+{
+  "hero": {
+    "title": "",
+    "subtitle": "",
+    "cta_text": "",
+    "cta_url": "",
+    "image_url": ""
+  },
+  "about": {
+    "subtitle": "",
+    "title": "",
+    "description": "",
+    "button_text": "",
+    "button_url": "",
+    "image_url": ""
+  },
+  "why_choose": {
+    "subtitle": "",
+    "title": "",
+    "description": "",
+    "cards": []
+  },
+  "manufacturing": {
+    "subtitle": "",
+    "title": "",
+    "description": "",
+    "button_text": "",
+    "button_url": "",
+    "image_url_1": "",
+    "image_url_2": ""
+  },
+  "factory_cta": {
+    "subtitle": "",
+    "title": "",
+    "button_text": "",
+    "button_url": "",
+    "background_image_url": ""
+  },
+  "blog_section": {
+    "subtitle": "",
+    "title": ""
+  },
+  "contact_cta": {
+    "subtitle": "",
+    "title": "",
+    "button_text": "",
+    "button_url": ""
+  }
+}

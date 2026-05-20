@@ -8,19 +8,15 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS categories (id INT AUTO_INCREMENT PRIMARY
 $pdo->exec("CREATE TABLE IF NOT EXISTS products (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, category_id INT, description TEXT, wattage VARCHAR(50), voltage VARCHAR(50), price DECIMAL(10,2), stock_status VARCHAR(20) DEFAULT 'in_stock', image_url VARCHAR(500), status VARCHAR(20) DEFAULT 'active', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 $pdo->exec("CREATE TABLE IF NOT EXISTS blog_posts (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, category VARCHAR(50) DEFAULT 'GREEN POWER', post_date VARCHAR(50) NOT NULL, image_url VARCHAR(255) NOT NULL, slug VARCHAR(100) NOT NULL UNIQUE, content TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 $pdo->exec("CREATE TABLE IF NOT EXISTS contact_inquiries (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, phone VARCHAR(20), subject VARCHAR(255), message TEXT NOT NULL, status VARCHAR(20) DEFAULT 'unread', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
-$pdo->exec("CREATE TABLE IF NOT EXISTS blog_comments (id INT AUTO_INCREMENT PRIMARY KEY, post_id INT NOT NULL, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, comment TEXT NOT NULL, status VARCHAR(20) DEFAULT 'new', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 
 // Stats
 $totalPosts     = $pdo->query("SELECT COUNT(*) FROM blog_posts")->fetchColumn();
 $totalProducts  = $pdo->query("SELECT COUNT(*) FROM products")->fetchColumn();
 $totalCats      = $pdo->query("SELECT COUNT(*) FROM categories")->fetchColumn();
 $totalInquiries = $pdo->query("SELECT COUNT(*) FROM contact_inquiries")->fetchColumn();
-$totalComments  = $pdo->query("SELECT COUNT(*) FROM blog_comments")->fetchColumn();
 $totalUnread    = $pdo->query("SELECT COUNT(*) FROM contact_inquiries WHERE status='unread'")->fetchColumn();
 $totalAdmins    = $pdo->query("SELECT COUNT(*) FROM admins")->fetchColumn();
 
-$recentProducts  = $pdo->query("SELECT * FROM products ORDER BY id DESC LIMIT 5")->fetchAll();
-$recentInquiries = $pdo->query("SELECT * FROM contact_inquiries ORDER BY id DESC LIMIT 4")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,69 +99,10 @@ $recentInquiries = $pdo->query("SELECT * FROM contact_inquiries ORDER BY id DESC
             <div class="ql-icon" style="background:#FDF2F2;color:var(--brand-red);"><i class="fa-solid fa-envelope-open"></i></div>
             <div class="ql-text"><div class="ql-title">View Inbox</div><div class="ql-sub"><?= $totalUnread ?> unread messages</div></div>
         </a>
-        <a href="manage-comments.php" class="quick-link-card">
-            <div class="ql-icon" style="background:#F4F8FF;color:#1D4ED8;"><i class="fa-solid fa-comments"></i></div>
-            <div class="ql-text"><div class="ql-title">Blog Comments</div><div class="ql-sub"><?= $totalComments ?> total comments</div></div>
-        </a>
     </div>
 
-    <!-- Two Column Panels -->
-    <div class="two-col">
-        <!-- Recent Products -->
-        <div class="panel-card">
-            <div class="panel-header">
-                <h3>Recent Products</h3>
-                <a href="manage-products.php" style="font-size:13px;font-weight:700;color:var(--brand-red);text-decoration:none;">View All →</a>
-            </div>
-            <?php if (count($recentProducts) > 0): ?>
-            <table class="data-table">
-                <thead>
-                    <tr><th>Product</th><th>Stock</th><th>Price</th></tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($recentProducts as $p): ?>
-                    <tr>
-                        <td>
-                            <div class="item-with-img">
-                                <?php if ($p['image_url']): ?><img src="<?= htmlspecialchars($p['image_url']) ?>" class="thumb-img" onerror="this.style.display='none'"><?php endif; ?>
-                                <span class="item-name" style="font-size:14px;"><?= htmlspecialchars($p['name']) ?></span>
-                            </div>
-                        </td>
-                        <td><span class="badge <?= $p['stock_status']==='in_stock' ? 'badge-green' : 'badge-red' ?>" style="font-size:10px;"><?= $p['stock_status']==='in_stock' ? '✓ Stock' : '✗ Out' ?></span></td>
-                        <td style="font-weight:700;font-size:14px;"><?= $p['price'] ? '₹'.number_format($p['price'],0) : '—' ?></td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <?php else: ?>
-            <div class="empty-state" style="padding:30px;"><i class="fa-solid fa-box-open"></i><p>No products yet.</p></div>
-            <?php endif; ?>
-        </div>
-
-        <!-- Recent Inquiries -->
-        <div class="panel-card">
-            <div class="panel-header">
-                <h3>Recent Mail</h3>
-                <a href="manage-inquiries.php" style="font-size:13px;font-weight:700;color:var(--brand-red);text-decoration:none;">View All →</a>
-            </div>
-            <?php if (count($recentInquiries) > 0): ?>
-            <div style="display:flex;flex-direction:column;gap:18px;">
-                <?php foreach ($recentInquiries as $inq): ?>
-                <div style="border-bottom:1px solid var(--border-light);padding-bottom:15px;">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
-                        <span style="font-weight:700;font-size:14px;color:var(--brand-green);"><?= htmlspecialchars($inq['name']) ?></span>
-                        <?php if ($inq['status']==='unread'): ?><span class="badge badge-red" style="font-size:9px;">New</span><?php endif; ?>
-                    </div>
-                    <div style="font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:3px;"><?= htmlspecialchars($inq['subject'] ?: 'No Subject') ?></div>
-                    <div style="font-size:12px;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><?= htmlspecialchars($inq['message']) ?></div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-            <?php else: ?>
-            <div class="empty-state" style="padding:30px;"><i class="fa-solid fa-inbox"></i><p>No messages yet.</p></div>
-            <?php endif; ?>
-        </div>
     </div>
+
 </div>
 </body>
 </html>
