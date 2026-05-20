@@ -7,6 +7,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -29,26 +30,7 @@ const Navbar = () => {
           <ul className="nav-links">
             <li><Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link></li>
             <li><Link to="/about-us" className={location.pathname === '/about-us' ? 'active' : ''}>About Us</Link></li>
-            <li 
-              className="dropdown-container"
-              onMouseEnter={() => setIsProductsOpen(true)}
-              onMouseLeave={() => setIsProductsOpen(false)}
-            >
-              <Link 
-                to="/products" 
-                className={`dropdown-trigger ${location.pathname.includes('/products') ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsProductsOpen(!isProductsOpen);
-                }}
-              >
-                Products
-              </Link>
-              <ul className={`dropdown-menu ${isProductsOpen ? 'open' : ''}`}>
-                <li><Link to="/products/indoor" onClick={() => setIsProductsOpen(false)}><span>Indoor Lights</span></Link></li>
-                <li><Link to="/products/outdoor" onClick={() => setIsProductsOpen(false)}><span>Outdoor Lights</span></Link></li>
-              </ul>
-            </li>
+            <li><Link to="/products" className={location.pathname.includes('/products') ? 'active' : ''}>Products</Link></li>
             <li><Link to="/why-savex" className={location.pathname === '/why-savex' ? 'active' : ''}>Why SaveX</Link></li>
             <li><Link to="/manufacturing" className={location.pathname === '/manufacturing' ? 'active' : ''}>Manufacturing & Quality</Link></li>
             <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Contact Us</Link></li>

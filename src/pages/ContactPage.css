@@ -126,6 +126,28 @@
   position: relative;
 }
 
+.status-message-banner {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.status-message-banner.success {
+  background-color: #E6F6ED;
+  color: #107C41;
+  border: 1px solid rgba(16, 124, 65, 0.1);
+}
+
+.status-message-banner.error {
+  background-color: #FDF2F2;
+  color: #E31E24;
+  border: 1px solid rgba(227, 30, 36, 0.1);
+}
+
 .contact-card {
   background: white;
   padding: 60px;

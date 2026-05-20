@@ -1,0 +1,2 @@
+# Force Apache to load index.php before index.html
+DirectoryIndex index.php index.html

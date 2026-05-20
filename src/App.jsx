@@ -20,6 +20,7 @@ import TeamPage from './pages/TeamPage';
 import BlogPostPage from './pages/BlogPostPage';
 import BlogPage from './pages/BlogPage';
 import CategoryPage from './pages/CategoryPage';
+import ProductsPage from './pages/ProductsPage';
 
 const HomePage = () => (
   <main>
@@ -63,7 +64,7 @@ function App() {
         <Route path="/about-us" element={<AboutPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/products" element={<div style={{padding: '200px', textAlign: 'center'}}>Products Page Coming Soon</div>} />
+        <Route path="/products" element={<ProductsPage />} />
         <Route path="/why-savex" element={<WhySaveXPage />} />
         <Route path="/manufacturing" element={<ManufacturingPage />} />
         <Route path="/contact" element={<ContactPage />} />

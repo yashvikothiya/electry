@@ -1,11 +1,71 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './ContactPage.css';
 
-
 const ContactPage = () => {
+  const [searchParams] = useSearchParams();
+  const initialSubject = searchParams.get('subject') || '';
+  const [subject, setSubject] = useState(initialSubject);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState({ type: '', text: '' });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (initialSubject) {
+      setSubject(initialSubject);
+    }
+  }, [initialSubject]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!name || !email || !message) {
+      setStatusMsg({ type: 'error', text: 'Please fill in all required fields (Name, Email, Message).' });
+      return;
+    }
+
+    setLoading(true);
+    setStatusMsg({ type: '', text: '' });
+
+    try {
+      const response = await fetch('http://localhost/yashvi/electry/backend/add-inquiry.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          subject,
+          message,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setStatusMsg({ type: 'success', text: 'Your message has been sent successfully!' });
+        setName('');
+        setPhone('');
+        setEmail('');
+        setMessage('');
+        setSubject('');
+      } else {
+        setStatusMsg({ type: 'error', text: data.error || 'Failed to send message. Please try again.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMsg({ type: 'error', text: 'Network error. Please check your connection and try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="contact-page">
@@ -64,47 +124,81 @@ const ContactPage = () => {
             {/* Right Col: Form Card */}
             <div className="contact-form-col">
               <div className="contact-card">
-                <form className="contact-form">
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  {statusMsg.text && (
+                    <div className={`status-message-banner ${statusMsg.type}`}>
+                      {statusMsg.text}
+                    </div>
+                  )}
+                  
                   <div className="form-group">
                     <div className="field-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                     </div>
-                    <input type="text" placeholder="Name" />
+                    <input 
+                      type="text" 
+                      placeholder="Name *" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
                   </div>
                   
                   <div className="form-group">
                     <div className="field-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
-                    <input type="text" placeholder="Phone" />
+                    <input 
+                      type="text" 
+                      placeholder="Phone" 
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
                   </div>
 
                   <div className="form-group">
                     <div className="field-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
-                    <input type="email" placeholder="Email Address" />
+                    <input 
+                      type="email" 
+                      placeholder="Email Address *" 
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
                   </div>
 
                   <div className="form-group">
                     <div className="field-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
                     </div>
-                    <input type="text" placeholder="Subject" />
+                    <input 
+                      type="text" 
+                      placeholder="Subject" 
+                      value={subject} 
+                      onChange={(e) => setSubject(e.target.value)} 
+                    />
                   </div>
 
                   <div className="form-group">
                     <div className="field-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                     </div>
-                    <input type="text" placeholder="How can we help you? Feel free to get in touch!" />
+                    <input 
+                      type="text" 
+                      placeholder="How can we help you? Feel free to get in touch! *" 
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                    />
                   </div>
 
-                  <button type="submit" className="form-submit-btn">
+                  <button type="submit" className="form-submit-btn" disabled={loading}>
                     <svg viewBox="0 0 24 24" fill="white" width="18" height="18" style={{marginRight: '10px'}}>
                       <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
                     </svg>
-                    Get In Touch
+                    {loading ? 'Sending...' : 'Get In Touch'}
                   </button>
                 </form>
               </div>
